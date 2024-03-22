@@ -22,6 +22,10 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNf-j7-cEF">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="607.33333333333337"/>
                                         <subviews>
+                                            <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="RTu-gW-xJh">
+                                                <rect key="frame" x="50" y="265" width="293" height="77.333333333333314"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </activityIndicatorView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="qtR-O5-7EI">
                                                 <rect key="frame" x="50" y="49.999999999999972" width="293" height="507.33333333333326"/>
                                                 <subviews>
@@ -77,6 +81,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="RTu-gW-xJh" id="U5v-qS-fjh"/>
                         <outlet property="testButton" destination="g8r-wp-UzC" id="Rur-o7-Cov"/>
                     </connections>
                 </viewController>

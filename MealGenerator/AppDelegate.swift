@@ -5,11 +5,17 @@
 //  Created by Philipp Tschan on 22.03.24.
 //
 
+import OpenAIKit
 import UIKit
+
+let apiToken: String = "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"
+
+/// Initialize OpenAIKit with your API Token wherever convenient in your project. Organization name is optional.
+public let openAI = OpenAIKit(apiToken: apiToken)
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

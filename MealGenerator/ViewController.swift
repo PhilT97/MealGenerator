@@ -5,12 +5,15 @@
 //  Created by Philipp Tschan on 22.03.24.
 //
 
+import Foundation
+import OpenAIKit
 import UIKit
 
 class ViewController: UIViewController {
     
     var gptInput:String!
     
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var testButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,22 +24,40 @@ class ViewController: UIViewController {
     
     
     @IBAction func buttonTapped(_ sender: Any) {
-        gptInput = testButton.currentTitle
-        GPTManager.shared.fetchGPTResponse(prompt: gptInput) { response in
-                    DispatchQueue.main.async {
-                        // Stelle sicher, dass du UI-Updates auf dem Hauptthread durchführst
-                        if let response = response {
-                            print("GPT-Antwort: \(response)")
-                            // Verarbeite die Antwort oder aktualisiere deine UI entsprechend
-                        } else {
-                            print("Es gab ein Problem bei der Anfrage.")
-                        }
-                    }
-                }
+        tryGpt()
     }
     
     
-    
 
+}
+
+extension ViewController {
+    private func tryGpt(){
+        openAI.sendCompletion(prompt: "Hello!", model: .gptV3_5(.gptTurbo), maxTokens: 2048) { [weak self] result in
+            switch result {
+            case .success(let aiResult):
+                DispatchQueue.main.async {
+                    if let text = aiResult.choices.first?.text {
+                        print("response text: \(text)") //"\n\nHello there, how may I assist you today?"
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async { [weak self] in
+                    let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                    self?.present(alert, animated: true)
+                }
+            }
+        }
+        
+    }
+    
+    func stopLoading() {
+            // Wenn du einen Aktivitätsindikator hast, stoppe ihn hier
+        activityIndicator.startAnimating()
+        activityIndicator.alpha = 1
+        activityIndicator.isHidden = false
+    }
+    
 }
 
