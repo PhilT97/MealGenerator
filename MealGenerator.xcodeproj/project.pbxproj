@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11D487102BAE0021003BEE51 /* GPTManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D4870F2BAE0021003BEE51 /* GPTManager.swift */; };
 		11FD7AE52BADECEA00077CDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FD7AE42BADECEA00077CDB /* AppDelegate.swift */; };
 		11FD7AE72BADECEA00077CDB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FD7AE62BADECEA00077CDB /* SceneDelegate.swift */; };
 		11FD7AE92BADECEA00077CDB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FD7AE82BADECEA00077CDB /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11D4870F2BAE0021003BEE51 /* GPTManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPTManager.swift; sourceTree = "<group>"; };
 		11FD7AE12BADECEA00077CDB /* MealGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FD7AE42BADECEA00077CDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11FD7AE62BADECEA00077CDB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				11FD7AE42BADECEA00077CDB /* AppDelegate.swift */,
 				11FD7AE62BADECEA00077CDB /* SceneDelegate.swift */,
 				11FD7AE82BADECEA00077CDB /* ViewController.swift */,
+				11D4870F2BAE0021003BEE51 /* GPTManager.swift */,
 				11FD7AEA2BADECEA00077CDB /* Main.storyboard */,
 				11FD7AED2BADECEB00077CDB /* Assets.xcassets */,
 				11FD7AEF2BADECEB00077CDB /* LaunchScreen.storyboard */,
@@ -261,6 +264,7 @@
 				11FD7AE92BADECEA00077CDB /* ViewController.swift in Sources */,
 				11FD7AE52BADECEA00077CDB /* AppDelegate.swift in Sources */,
 				11FD7AE72BADECEA00077CDB /* SceneDelegate.swift in Sources */,
+				11D487102BAE0021003BEE51 /* GPTManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
