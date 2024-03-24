@@ -180,13 +180,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7rI-3v-8VU">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUO-td-yc4">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="151.66666666666666"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="142"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UjR-IF-ZbR">
-                                                <rect key="frame" x="19.999999999999996" y="121.33333333333333" width="56.666666666666657" height="20.333333333333329"/>
+                                                <rect key="frame" x="19.999999999999996" y="111.66666666666666" width="56.666666666666657" height="20.333333333333343"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -199,7 +199,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qkm-ht-EsX">
-                                        <rect key="frame" x="0.0" y="151.66666666666669" width="393" height="607.33333333333326"/>
+                                        <rect key="frame" x="0.0" y="142" width="393" height="568"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1WV-Wo-uZT" userLabel="Recipe">
                                                 <rect key="frame" x="-80" y="8" width="393" height="607.33333333333337"/>
@@ -231,6 +231,7 @@
                             <constraint firstItem="7rI-3v-8VU" firstAttribute="leading" secondItem="PNp-cf-dSv" secondAttribute="leading" id="rsY-iT-zb2"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="CJ1-ki-Z36"/>
                     <navigationItem key="navigationItem" id="Mlg-ux-zG1"/>
                     <connections>
                         <outlet property="recipeTextView" destination="1WV-Wo-uZT" id="1s9-Xw-fZj"/>
@@ -238,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a3A-NW-2sV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3927" y="41"/>
+            <point key="canvasLocation" x="2570" y="1104"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="3qM-AP-zPB">
@@ -253,6 +254,7 @@
                     <connections>
                         <segue destination="yqe-fQ-NyN" kind="relationship" relationship="viewControllers" id="nyY-or-QbJ"/>
                         <segue destination="MVi-Oi-nun" kind="relationship" relationship="viewControllers" id="vvT-hT-IOC"/>
+                        <segue destination="Ydb-zj-yBo" kind="relationship" relationship="viewControllers" id="hkK-J4-vE1"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VKR-Cn-CY6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
