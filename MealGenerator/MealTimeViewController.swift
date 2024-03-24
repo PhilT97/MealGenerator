@@ -6,20 +6,24 @@
 //
 
 import UIKit
+import OpenAIKit
 
 class MealTimeViewController: UIViewController {
     
     var category:String?
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     
     @IBAction func breakfastTapped(_ sender: UIButton) {
-        mealGenerator.setMealTime(mealTime: "Breakfast")
+        startActivityIndicator()
+        tryGpt()
     }
     
     /*
@@ -32,4 +36,41 @@ class MealTimeViewController: UIViewController {
     }
     */
 
+}
+
+extension MealTimeViewController {
+    private func tryGpt(){
+        openAI.sendChatCompletion(newMessage: AIMessage(role: .user, content: "erstelle ein Rezept, formattiert als swift string ohne Deklaration"), previousMessages: [], model: .gptV3_5(.gptTurbo), maxTokens: 2048, n: 1, completion: { [weak self] result in
+            DispatchQueue.main.async { self?.stopActivityIndicator() }
+            
+            switch result {
+            case .success(let aiResult):
+                // Handle result actions
+                if let text = aiResult.choices.first?.message?.content {
+                    mealGenerator.setRecipe(finalRecipe: text)
+                    print(text)
+                    
+                }
+            case .failure(let error):
+                // Handle error actions
+                print(error.localizedDescription)
+            }
+        })
+    }
+    
+    func startActivityIndicator() {
+            // Wenn du einen Aktivitätsindikator hast, stoppe ihn hier
+        activityIndicator.startAnimating()
+        activityIndicator.alpha = 1
+        activityIndicator.isHidden = false
+    }
+    
+    func stopActivityIndicator() {
+        activityIndicator.stopAnimating()
+        activityIndicator.alpha=0
+        activityIndicator.isHidden = true
+        performSegue(withIdentifier: "RecipeSegueID", sender: nil)
+    }
+    
+    
 }

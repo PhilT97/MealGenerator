@@ -9,7 +9,11 @@ import MealGeneratorKit
 import OpenAIKit
 import UIKit
 
-let apiToken: String = "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"
+//"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"
+
+let apiToken: String = "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"
+
+
 
 /// Initialize OpenAIKit with your API Token wherever convenient in your project. Organization name is optional.
 public let openAI = OpenAIKit(apiToken: apiToken)

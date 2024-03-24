@@ -13,8 +13,6 @@ class MealTypeViewController: UIViewController {
     
     
     
-    // Loading symbol
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,18 +21,23 @@ class MealTypeViewController: UIViewController {
         
     }
     
-    
-    @IBAction func meatTapped(_ sender: UIButton) {
-        mealGenerator.setCategory(category: "Meat")
+    @IBAction func meatButtonTapped(_ sender: Any) {
+        print("button was tapped")
     }
     
     
     
     
+    @IBAction func buttonTapped(_ sender: Any) {
+        print("Test")
+    }
+    
+    
+    
 
 }
-
-extension MealTypeViewController {
+//
+//extension MealTypeViewController {
 //    private func tryGpt(){
 //        openAI.sendCompletion(prompt: "Hello!", model: .gptV3_5(.gptTurbo), maxTokens: 2048) { [weak self] result in
 //            switch result {
@@ -62,9 +65,9 @@ extension MealTypeViewController {
 //        activityIndicator.isHidden = false
 //    }
     
-    private func dummyGenerator() {
-        
-    }
+//    private func dummyGenerator() {
+//        
+//    }
     
-}
+//}
 
