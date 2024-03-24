@@ -34,8 +34,17 @@ class MealTimeViewController: UIViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
+     */
 
+    @IBAction func ingredientsButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "ingredientsSegueID", sender: nil)
+    }
+    
+    @IBAction func unwindToMealTimeSegue(_ sender: UIStoryboardSegue) {
+        print("Unwound to Meal time")
+    }
+    
+    
 }
 
 extension MealTimeViewController {
@@ -71,6 +80,8 @@ extension MealTimeViewController {
         activityIndicator.isHidden = true
         performSegue(withIdentifier: "RecipeSegueID", sender: nil)
     }
+    
+    
     
     
 }

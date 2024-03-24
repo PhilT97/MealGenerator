@@ -9,7 +9,12 @@ import Foundation
 import OpenAIKit
 import UIKit
 
-class MealTypeViewController: UIViewController {
+class MealTypeVC: UIViewController {
+    
+    // View-Outlets in Current View Controller
+    
+    @IBOutlet var mealTypeView: UIView!
+    @IBOutlet var mealTimeView: UIView!
     
     
     
@@ -21,21 +26,33 @@ class MealTypeViewController: UIViewController {
         
     }
     
-    @IBAction func meatButtonTapped(_ sender: Any) {
-        print("button was tapped")
-    }
-    
-    
-    
-    
-    @IBAction func buttonTapped(_ sender: Any) {
-        print("Test")
-    }
-    
-    
-    
 
+    @IBAction func mealTimeButtonTapped(_ sender: UIButton) {
+        if self.mealTimeView.alpha != 1 {
+            UIView.animate(withDuration: 0.5) {
+                self.mealTypeView.alpha = 0
+                self.mealTimeView.alpha = 1
+            }
+        }
+    }
+    
+    
+    @IBAction func mealTypeButtonTapped(_ sender: UIButton) {
+        if self.mealTypeView.alpha != 1 {
+            UIView.animate(withDuration: 0.5) {
+                self.mealTimeView.alpha = 0
+                self.mealTypeView.alpha = 1
+            }
+        }
+    }
+    
 }
+
+// MealTypeView Methods
+extension MealTimeViewController {
+    
+}
+
 //
 //extension MealTypeViewController {
 //    private func tryGpt(){
