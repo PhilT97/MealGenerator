@@ -50,8 +50,14 @@ class MealTypeVC: UIViewController {
     
     @IBOutlet var mealTimeButtons: [UIButton]!
     
+    // Activity Indicator
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     
+    
+    
+    
+    @IBOutlet var generateRecipeTextView: UITextView!
     
     
     
@@ -68,7 +74,13 @@ class MealTypeVC: UIViewController {
         mealTimeButtons = [breakfastButton, lunchButton, dinnerButton, snackButton]
         
         // Initiate first view
-        mealTypeButton.isSelected = true
+        if !check_if_button_is_active() {
+            self.mealTypeButton.isSelected = true
+        }
+        
+        // Modify Pop Up Text View to be not interactable
+        self.generateRecipeTextView.isEditable = false
+        
         
         
     }
@@ -116,6 +128,7 @@ extension MealTypeVC {
     }
     
     @IBAction func generateRecipeButtonTapped(_ sender: UIButton) {
+        self.generateRecipeTextView.text = "Erstelle ein Rezept für ein \(mealGenerator.getCategory() ?? "zufälliges Gericht") zum/als \(mealGenerator.getMealTime() ?? "zufällige Mahlzeit")?"
         self.generateRecipeView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
         self.generateRecipeView.alpha = 1
         UIView.animate(withDuration: 0.2) {
@@ -132,6 +145,14 @@ extension MealTypeVC {
         }
     }
     
+    func check_if_button_is_active() -> Bool{
+        var is_active:Bool = false
+        for button in self.buttonBarButtons {
+            is_active = is_active || button.isSelected
+        }
+        return is_active
+    }
+    
 }
 
 // MEAL TYPE METHODS
@@ -139,6 +160,7 @@ extension MealTypeVC {
     // This extension manages the buttons on the Meal Type Chooser
     @IBAction func meatButtonTapped(_ sender: UIButton) {
         unselect_mealTypeButtons()
+        mealGenerator.setCategory(category: "Fleischgericht")
         if meatButton.isSelected {
             unselect_mealTypeButtons()
             meatButton.isSelected = false
@@ -152,6 +174,7 @@ extension MealTypeVC {
     
     @IBAction func vegetarianButtonTapped(_ sender: UIButton) {
         unselect_mealTypeButtons()
+        mealGenerator.setCategory(category: "Vegetarisches Gericht")
         if vegetarianButton.isSelected {
             unselect_mealTypeButtons()
             vegetarianButton.isSelected = false
@@ -164,6 +187,7 @@ extension MealTypeVC {
     
     @IBAction func veganButtonTapped(_ sender: UIButton) {
         unselect_mealTypeButtons()
+        mealGenerator.setCategory(category: "Veganes Gericht")
         if veganButton.isSelected {
             unselect_mealTypeButtons()
             veganButton.isSelected = false
@@ -176,6 +200,7 @@ extension MealTypeVC {
     
     @IBAction func randomTypeButtonTapped(_ sender: UIButton) {
         unselect_mealTypeButtons()
+        mealGenerator.setCategory(category: "Zufälliges Gericht")
         if randomType.isSelected {
             unselect_mealTypeButtons()
             randomType.isSelected = false
@@ -201,6 +226,7 @@ extension MealTypeVC {
     // This extensions manages the buttons on the Meal Time Chooser
     @IBAction func breakfastButtonTapped(_ sender: UIButton) {
         unselect_mealTimeButtons()
+        mealGenerator.setMealTime(mealTime: "Frühstück")
         if breakfastButton.isSelected {
             unselect_mealTimeButtons()
             breakfastButton.isSelected = false
@@ -213,6 +239,7 @@ extension MealTypeVC {
     
     @IBAction func lunchButtonTapped(_ sender: UIButton) {
         unselect_mealTimeButtons()
+        mealGenerator.setMealTime(mealTime: "Mittagessen")
         if lunchButton.isSelected {
             unselect_mealTimeButtons()
             lunchButton.isSelected = false
@@ -225,6 +252,7 @@ extension MealTypeVC {
     
     @IBAction func dinnerButtonTapped(_ sender: UIButton) {
         unselect_mealTimeButtons()
+        mealGenerator.setMealTime(mealTime: "Abendessen")
         if dinnerButton.isSelected {
             unselect_mealTimeButtons()
             dinnerButton.isSelected = false
@@ -237,6 +265,7 @@ extension MealTypeVC {
     
     @IBAction func snackButtonTapped(_ sender: UIButton) {
         unselect_mealTimeButtons()
+        mealGenerator.setMealTime(mealTime: "Snack")
         if snackButton.isSelected {
             unselect_mealTimeButtons()
             snackButton.isSelected = false
@@ -259,8 +288,13 @@ extension MealTypeVC {
 // GENERATE RECIPE METHODS
 extension MealTypeVC {
     @IBAction func generateRecipeYesTapped (_ sender: UIButton){
-        
-        
+        UIView.animate(withDuration: 0.2) {
+            self.startActivityIndicator()
+            self.tryGpt()
+//            self.transparancyView.alpha = 0
+//            self.generateRecipeView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+//            self.generateRecipeView.alpha = 0
+        }
     }
     
     @IBAction func generateRecipeNoTapped (_ sender: UIButton){
@@ -272,6 +306,49 @@ extension MealTypeVC {
         
         
     }
+}
+
+extension MealTypeVC {
+    private func tryGpt(){
+        let prompt = "erstelle ein Rezept für ein \(mealGenerator.getCategory() ?? "zufälliges Gericht") zum/als \(mealGenerator.getMealTime() ?? "zufällige Mahlzeit"), formattiert als swift string ohne Deklaration, Ausgabe soll nur der String Inhalt sein und so aussehen: Name des Gerichts \n Zutaten \n Zubereitung"
+        openAI.sendChatCompletion(newMessage: AIMessage(role: .user, content: prompt ), previousMessages: [], model: .gptV3_5(.gptTurbo), maxTokens: 2048, n: 1, completion: { [weak self] result in
+            DispatchQueue.main.async { self?.stopActivityIndicator() }
+            
+            switch result {
+            case .success(let aiResult):
+                // Handle result actions
+                if let text = aiResult.choices.first?.message?.content {
+                    let recipe = "Hier ist ein Rezept für ein \(mealGenerator.getCategory() ?? "zufälliges Gericht") zum/als \(mealGenerator.getMealTime() ?? "zufällige Mahlzeit") \n" + text
+                    mealGenerator.setRecipe(finalRecipe: recipe)
+                    
+                }
+            case .failure(let error):
+                // Handle error actions
+                print(error.localizedDescription)
+            }
+        })
+    }
+    
+    func startActivityIndicator() {
+            // Wenn du einen Aktivitätsindikator hast, stoppe ihn hier
+        activityIndicator.startAnimating()
+        activityIndicator.alpha = 1
+        activityIndicator.isHidden = false
+    }
+    
+    func stopActivityIndicator() {
+        activityIndicator.stopAnimating()
+        activityIndicator.alpha=0
+        activityIndicator.isHidden = true
+        self.transparancyView.alpha = 0
+        self.generateRecipeView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+        self.generateRecipeView.alpha = 0
+        performSegue(withIdentifier: "generateRecipeSegueID", sender: nil)
+    }
+    
+    
+    
+    
 }
 
 //

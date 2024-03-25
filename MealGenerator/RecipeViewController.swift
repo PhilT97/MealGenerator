@@ -21,9 +21,7 @@ class RecipeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
         
-//        mealGenerator.generateRecipe()
-//        
-//        recipeTextView.text = mealGenerator.getRecipe()
+        recipeTextView.text = mealGenerator.getRecipe()
     }
     
     
