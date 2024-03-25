@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C5T-JO-H7s" userLabel="MealTypeView">
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C5T-JO-H7s" userLabel="MealTypeView">
                                 <rect key="frame" x="0.0" y="159" width="393" height="510"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OWr-Bh-cvX">
@@ -31,7 +31,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ADc-F2-OQD">
                                                                 <rect key="frame" x="0.0" y="0.0" width="241" height="212.66666666666666"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="filled" title="Meat"/>
+                                                                <buttonConfiguration key="configuration" style="filled" title="Fleischgericht"/>
                                                                 <connections>
                                                                     <action selector="meatButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="vRD-Ox-yH5"/>
                                                                 </connections>
@@ -39,9 +39,8 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GH2-Xv-Jbg" userLabel="Vegetarian">
                                                                 <rect key="frame" x="0.0" y="262.66666666666669" width="241" height="212.33333333333331"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="filled" title="Vegetarian"/>
+                                                                <buttonConfiguration key="configuration" style="filled" title="Vegetarisch"/>
                                                                 <connections>
-                                                                    <action selector="buttonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="J20-Ma-07M"/>
                                                                     <action selector="vegetarianButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="xfH-N4-Byn"/>
                                                                 </connections>
                                                             </button>
@@ -56,7 +55,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3fJ-2g-PTf">
                                                                 <rect key="frame" x="0.0" y="787.66666666666663" width="241" height="212.33333333333337"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="filled" title="Random"/>
+                                                                <buttonConfiguration key="configuration" style="filled" title="Keine Präferenz"/>
                                                                 <connections>
                                                                     <action selector="randomTypeButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="h58-Gk-oPu"/>
                                                                 </connections>
@@ -94,39 +93,51 @@
                                     <constraint firstAttribute="bottom" secondItem="OWr-Bh-cvX" secondAttribute="bottom" id="mqN-95-sIk"/>
                                 </constraints>
                             </view>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybH-Bd-fiE" userLabel="MealTimeView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybH-Bd-fiE" userLabel="MealTimeView">
                                 <rect key="frame" x="0.0" y="159" width="393" height="524.66666666666663"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HOy-fp-NuT">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="524.66666666666663"/>
+                                        <rect key="frame" x="10" y="0.0" width="373" height="424.66666666666669"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jBE-TI-fK8">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="252.33333333333334"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="373" height="202.33333333333334"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Re1-lb-QRh">
-                                                        <rect key="frame" x="0.0" y="0.0" width="186.66666666666666" height="252.33333333333334"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="202.33333333333334"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Frühstück"/>
+                                                        <connections>
+                                                            <action selector="breakfastButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="BrG-66-Z1R"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQN-ph-QBh">
-                                                        <rect key="frame" x="206.66666666666663" y="0.0" width="186.33333333333337" height="252.33333333333334"/>
+                                                        <rect key="frame" x="196.66666666666663" y="0.0" width="176.33333333333337" height="202.33333333333334"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Mittagessen"/>
+                                                        <connections>
+                                                            <action selector="lunchButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="vA5-rM-0BB"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="g2f-Vl-gdm">
-                                                <rect key="frame" x="0.0" y="272.33333333333331" width="393" height="252.33333333333331"/>
+                                                <rect key="frame" x="0.0" y="222.33333333333331" width="373" height="202.33333333333331"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUZ-nl-aDS">
-                                                        <rect key="frame" x="0.0" y="0.0" width="186.66666666666666" height="252.33333333333334"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="202.33333333333334"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Abendessen"/>
+                                                        <connections>
+                                                            <action selector="dinnerButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="cZO-E2-fmX"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vkt-eQ-9Cp">
-                                                        <rect key="frame" x="206.66666666666663" y="0.0" width="186.33333333333337" height="252.33333333333334"/>
+                                                        <rect key="frame" x="196.66666666666663" y="0.0" width="176.33333333333337" height="202.33333333333334"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Snack"/>
+                                                        <connections>
+                                                            <action selector="snackButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="RiT-gY-0bz"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -135,13 +146,13 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="HOy-fp-NuT" firstAttribute="leading" secondItem="ybH-Bd-fiE" secondAttribute="leading" id="34J-eV-zXt"/>
-                                    <constraint firstAttribute="bottom" secondItem="HOy-fp-NuT" secondAttribute="bottom" id="CBi-it-jZm"/>
-                                    <constraint firstAttribute="trailing" secondItem="HOy-fp-NuT" secondAttribute="trailing" id="VbG-Lp-YMN"/>
+                                    <constraint firstItem="HOy-fp-NuT" firstAttribute="leading" secondItem="ybH-Bd-fiE" secondAttribute="leading" constant="10" id="34J-eV-zXt"/>
+                                    <constraint firstAttribute="bottom" secondItem="HOy-fp-NuT" secondAttribute="bottom" constant="100" id="CBi-it-jZm"/>
+                                    <constraint firstAttribute="trailing" secondItem="HOy-fp-NuT" secondAttribute="trailing" constant="10" id="VbG-Lp-YMN"/>
                                     <constraint firstItem="HOy-fp-NuT" firstAttribute="top" secondItem="ybH-Bd-fiE" secondAttribute="top" id="ko2-Wr-PYN"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="STt-l4-Dek" userLabel="BottomView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="STt-l4-Dek" userLabel="BottomView">
                                 <rect key="frame" x="0.0" y="683.66666666666663" width="393" height="85.333333333333371"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qUR-Xp-KaJ">
@@ -209,14 +220,18 @@
                             <constraint firstItem="uzZ-bl-Yww" firstAttribute="top" secondItem="Y0m-yR-4mm" secondAttribute="top" id="LhQ-aM-Arl"/>
                             <constraint firstItem="uzZ-bl-Yww" firstAttribute="width" secondItem="Y0m-yR-4mm" secondAttribute="width" id="QJ5-OD-xq2"/>
                             <constraint firstItem="C5T-JO-H7s" firstAttribute="top" secondItem="Y0m-yR-4mm" secondAttribute="top" constant="100" id="RHf-be-q5E"/>
+                            <constraint firstItem="STt-l4-Dek" firstAttribute="top" secondItem="ybH-Bd-fiE" secondAttribute="bottom" id="SPy-tc-kaU"/>
                             <constraint firstItem="uzZ-bl-Yww" firstAttribute="leading" secondItem="Y0m-yR-4mm" secondAttribute="leading" id="Vd1-YV-k3O"/>
                             <constraint firstItem="C5T-JO-H7s" firstAttribute="trailing" secondItem="Y0m-yR-4mm" secondAttribute="trailing" id="ZFg-dj-b2i"/>
                             <constraint firstItem="Y0m-yR-4mm" firstAttribute="bottom" secondItem="C5T-JO-H7s" secondAttribute="bottom" constant="100" id="ZNF-0y-KHo"/>
+                            <constraint firstItem="ybH-Bd-fiE" firstAttribute="trailing" secondItem="Y0m-yR-4mm" secondAttribute="trailing" id="ZkF-sd-jBt"/>
                             <constraint firstItem="uzZ-bl-Yww" firstAttribute="leading" secondItem="Y0m-yR-4mm" secondAttribute="leading" id="ax9-Bj-E0w"/>
                             <constraint firstItem="ybH-Bd-fiE" firstAttribute="top" secondItem="Y0m-yR-4mm" secondAttribute="top" constant="100" id="c0h-Vm-GnS"/>
                             <constraint firstItem="STt-l4-Dek" firstAttribute="height" secondItem="iVd-2z-dm7" secondAttribute="height" multiplier="0.1" id="fWT-Xu-IvW"/>
                             <constraint firstItem="UYe-fQ-x6K" firstAttribute="height" secondItem="iVd-2z-dm7" secondAttribute="height" multiplier="1.17371" id="h1s-sR-vMo"/>
                             <constraint firstItem="uzZ-bl-Yww" firstAttribute="height" secondItem="Y0m-yR-4mm" secondAttribute="height" multiplier="0.1" id="h2h-03-56t"/>
+                            <constraint firstItem="ybH-Bd-fiE" firstAttribute="leading" secondItem="Y0m-yR-4mm" secondAttribute="leading" id="had-vi-f1C"/>
+                            <constraint firstItem="ybH-Bd-fiE" firstAttribute="top" secondItem="uzZ-bl-Yww" secondAttribute="bottom" constant="29" id="hye-nI-fkP"/>
                             <constraint firstItem="uzZ-bl-Yww" firstAttribute="top" secondItem="Y0m-yR-4mm" secondAttribute="top" id="jPT-K0-aUB"/>
                             <constraint firstItem="uzZ-bl-Yww" firstAttribute="trailing" secondItem="Y0m-yR-4mm" secondAttribute="trailing" id="p7q-W9-Kh2"/>
                             <constraint firstItem="uzZ-bl-Yww" firstAttribute="trailing" secondItem="Y0m-yR-4mm" secondAttribute="trailing" id="pTC-QD-Ty8"/>
@@ -230,12 +245,16 @@
                     <tabBarItem key="tabBarItem" systemItem="bookmarks" id="JBi-wz-z29"/>
                     <navigationItem key="navigationItem" id="meN-xD-LNe"/>
                     <connections>
+                        <outlet property="breakfastButton" destination="Re1-lb-QRh" id="R86-Hf-Paq"/>
+                        <outlet property="dinnerButton" destination="fUZ-nl-aDS" id="lts-Yk-veo"/>
+                        <outlet property="lunchButton" destination="QQN-ph-QBh" id="8Ki-qW-IUt"/>
                         <outlet property="mealTimeButton" destination="zsa-eH-ihV" id="nab-Yw-hIN"/>
                         <outlet property="mealTimeView" destination="ybH-Bd-fiE" id="nMw-cw-pGz"/>
                         <outlet property="mealTypeButton" destination="Ihm-0j-CzE" id="17Y-dw-ml8"/>
                         <outlet property="mealTypeView" destination="C5T-JO-H7s" id="O7p-jk-JhZ"/>
                         <outlet property="meatButton" destination="ADc-F2-OQD" id="AGt-0i-8Gp"/>
                         <outlet property="randomType" destination="3fJ-2g-PTf" id="BoB-sU-QIG"/>
+                        <outlet property="snackButton" destination="Vkt-eQ-9Cp" id="4lz-sO-6Tl"/>
                         <outlet property="veganButton" destination="kOz-kw-OFx" id="zaf-5o-1s5"/>
                         <outlet property="vegetarianButton" destination="GH2-Xv-Jbg" id="2m6-RN-rpu"/>
                     </connections>

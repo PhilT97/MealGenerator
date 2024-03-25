@@ -11,6 +11,8 @@ import UIKit
 
 class MealTypeVC: UIViewController {
     
+    private let lightBlue = UIColor(red: 213.0/255.0, green: 230.0/255.0, blue: 253/255.0, alpha: 1)
+    
     // View-Outlets in Current View Controller
     
     @IBOutlet var mealTypeView: UIView!
@@ -30,16 +32,43 @@ class MealTypeVC: UIViewController {
     @IBOutlet var veganButton: UIButton!
     @IBOutlet var randomType: UIButton!
     
+    @IBOutlet var mealTypeButtons: [UIButton]!
+    
+    // Meal Time Button Outlets
+    @IBOutlet var breakfastButton: UIButton!
+    @IBOutlet var lunchButton: UIButton!
+    @IBOutlet var dinnerButton: UIButton!
+    @IBOutlet var snackButton: UIButton!
+    
+    @IBOutlet var mealTimeButtons: [UIButton]!
     
     
     
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        buttonBarButtons = [mealTypeButton, mealTimeButton]
+        mealTypeButtons = [meatButton, vegetarianButton, veganButton, randomType]
+        for button in mealTypeButtons {
+            button.backgroundColor = UIColor.clear
+        }
+        mealTimeButtons = [breakfastButton, lunchButton, dinnerButton, snackButton]
+        
+        // Initiate first view
+        mealTypeButton.isSelected = true
+        
+        
+    }
     
     override func viewDidLoad() {
-        buttonBarButtons = [mealTypeButton, mealTimeButton]
+        // initialize buttons in array
+        
+        
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.mealTypeButton.isSelected = true
         
         
     }
@@ -51,10 +80,11 @@ class MealTypeVC: UIViewController {
 
 // BUTTON BAR METHODS
 extension MealTypeVC {
+    // This extension manages the buttons on the bottom bar of the Recipe generator
     @IBAction func mealTimeButtonTapped(_ sender: UIButton) {
         if self.mealTimeView.alpha != 1 {
             UIView.animate(withDuration: 0.5) {
-                self.unselect_buttons()
+                self.unselect_buttonBarButtons()
                 self.mealTypeView.alpha = 0
                 self.mealTimeView.alpha = 1
                 self.mealTimeButton.isSelected = true
@@ -66,7 +96,7 @@ extension MealTypeVC {
     @IBAction func mealTypeButtonTapped(_ sender: UIButton) {
         if self.mealTypeView.alpha != 1 {
             UIView.animate(withDuration: 0.5) {
-                self.unselect_buttons()
+                self.unselect_buttonBarButtons()
                 self.mealTimeView.alpha = 0
                 self.mealTypeView.alpha = 1
                 self.mealTypeButton.isSelected = true
@@ -74,7 +104,7 @@ extension MealTypeVC {
         }
     }
     
-    func unselect_buttons(){
+    func unselect_buttonBarButtons(){
         for button in self.buttonBarButtons {
             button.isSelected = false
         }
@@ -84,21 +114,61 @@ extension MealTypeVC {
 
 // MEAL TYPE METHODS
 extension MealTypeVC {
-    
+    // This extension manages the buttons on the Meal Type Chooser
     @IBAction func meatButtonTapped(_ sender: UIButton) {
-        print("YOU CHOSE MEAT")
+        unselect_mealTypeButtons()
+        if meatButton.isSelected {
+            unselect_mealTypeButtons()
+            meatButton.isSelected = false
+        }
+        else {
+            meatButton.tintColor = lightBlue
+            meatButton.isSelected = true
+        }
+        
     }
     
     @IBAction func vegetarianButtonTapped(_ sender: UIButton) {
-        
+        unselect_mealTypeButtons()
+        if vegetarianButton.isSelected {
+            unselect_mealTypeButtons()
+            vegetarianButton.isSelected = false
+        }
+        else {
+            vegetarianButton.tintColor = lightBlue
+            vegetarianButton.isSelected = true
+        }
     }
     
     @IBAction func veganButtonTapped(_ sender: UIButton) {
-        
+        unselect_mealTypeButtons()
+        if veganButton.isSelected {
+            unselect_mealTypeButtons()
+            veganButton.isSelected = false
+        }
+        else {
+            veganButton.tintColor = lightBlue
+            veganButton.isSelected = true
+        }
     }
     
     @IBAction func randomTypeButtonTapped(_ sender: UIButton) {
+        unselect_mealTypeButtons()
+        if randomType.isSelected {
+            unselect_mealTypeButtons()
+            randomType.isSelected = false
+        }
+        else {
+            randomType.tintColor = lightBlue
+            randomType.isSelected = true
+        }
         
+    }
+    
+    private func unselect_mealTypeButtons() {
+        for button in mealTypeButtons {
+            button.tintColor = UIColor.systemBlue
+        }
     }
     
     
@@ -106,6 +176,61 @@ extension MealTypeVC {
 
 // MEAL TIME METHODS
 extension MealTypeVC {
+    // This extensions manages the buttons on the Meal Time Chooser
+    @IBAction func breakfastButtonTapped(_ sender: UIButton) {
+        unselect_mealTimeButtons()
+        if breakfastButton.isSelected {
+            unselect_mealTimeButtons()
+            breakfastButton.isSelected = false
+        }
+        else {
+            breakfastButton.tintColor = lightBlue
+            breakfastButton.isSelected = true
+        }
+    }
+    
+    @IBAction func lunchButtonTapped(_ sender: UIButton) {
+        unselect_mealTimeButtons()
+        if lunchButton.isSelected {
+            unselect_mealTimeButtons()
+            lunchButton.isSelected = false
+        }
+        else {
+            lunchButton.tintColor = lightBlue
+            lunchButton.isSelected = true
+        }
+    }
+    
+    @IBAction func dinnerButtonTapped(_ sender: UIButton) {
+        unselect_mealTimeButtons()
+        if dinnerButton.isSelected {
+            unselect_mealTimeButtons()
+            dinnerButton.isSelected = false
+        }
+        else {
+            dinnerButton.tintColor = lightBlue
+            dinnerButton.isSelected = true
+        }
+    }
+    
+    @IBAction func snackButtonTapped(_ sender: UIButton) {
+        unselect_mealTimeButtons()
+        if snackButton.isSelected {
+            unselect_mealTimeButtons()
+            snackButton.isSelected = false
+        }
+        else {
+            snackButton.tintColor = lightBlue
+            snackButton.isSelected = true
+        }
+    }
+    
+    private func unselect_mealTimeButtons() {
+        for button in mealTimeButtons {
+            button.tintColor = UIColor.systemBlue
+        }
+    }
+   
     
 }
 
