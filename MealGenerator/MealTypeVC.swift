@@ -13,14 +13,22 @@ class MealTypeVC: UIViewController {
     
     private let lightBlue = UIColor(red: 213.0/255.0, green: 230.0/255.0, blue: 253/255.0, alpha: 1)
     
+    
     // View-Outlets in Current View Controller
     
     @IBOutlet var mealTypeView: UIView!
     @IBOutlet var mealTimeView: UIView!
     
+    
+    @IBOutlet var transparancyView: UIView!
+    @IBOutlet var generateRecipeView: UIView!
+    
+    
     // Button Bar Button Outlets
     @IBOutlet var mealTypeButton: UIButton!
     @IBOutlet var mealTimeButton: UIButton!
+    
+    @IBOutlet var generateRecipeButton: UIButton!
     
     @IBOutlet var buttonBarButtons: [UIButton]!
     
@@ -46,8 +54,11 @@ class MealTypeVC: UIViewController {
     
     
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        generateRecipeView.layer.cornerRadius = 20
         
         buttonBarButtons = [mealTypeButton, mealTimeButton]
         mealTypeButtons = [meatButton, vegetarianButton, veganButton, randomType]
@@ -103,6 +114,17 @@ extension MealTypeVC {
             }
         }
     }
+    
+    @IBAction func generateRecipeButtonTapped(_ sender: UIButton) {
+        self.generateRecipeView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+        self.generateRecipeView.alpha = 1
+        UIView.animate(withDuration: 0.2) {
+            self.transparancyView.alpha = 0.7
+            self.generateRecipeView.transform = CGAffineTransform.identity
+        }
+    }
+    
+    
     
     func unselect_buttonBarButtons(){
         for button in self.buttonBarButtons {
@@ -232,6 +254,24 @@ extension MealTypeVC {
     }
    
     
+}
+
+// GENERATE RECIPE METHODS
+extension MealTypeVC {
+    @IBAction func generateRecipeYesTapped (_ sender: UIButton){
+        
+        
+    }
+    
+    @IBAction func generateRecipeNoTapped (_ sender: UIButton){
+        UIView.animate(withDuration: 0.2) {
+            self.transparancyView.alpha = 0
+            self.generateRecipeView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+            self.generateRecipeView.alpha = 0
+        }
+        
+        
+    }
 }
 
 //
