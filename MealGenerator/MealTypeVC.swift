@@ -16,22 +16,48 @@ class MealTypeVC: UIViewController {
     @IBOutlet var mealTypeView: UIView!
     @IBOutlet var mealTimeView: UIView!
     
+    // Button Bar Button Outlets
+    @IBOutlet var mealTypeButton: UIButton!
+    @IBOutlet var mealTimeButton: UIButton!
+    
+    @IBOutlet var buttonBarButtons: [UIButton]!
+    
+    
+    // Meal Type Button Outlets
+    
+    @IBOutlet var meatButton: UIButton!
+    @IBOutlet var vegetarianButton: UIButton!
+    @IBOutlet var veganButton: UIButton!
+    @IBOutlet var randomType: UIButton!
+    
+    
+    
     
     
     
     override func viewDidLoad() {
+        buttonBarButtons = [mealTypeButton, mealTimeButton]
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.mealTypeButton.isSelected = true
         
         
     }
     
 
+    
+    
+}
+
+// BUTTON BAR METHODS
+extension MealTypeVC {
     @IBAction func mealTimeButtonTapped(_ sender: UIButton) {
         if self.mealTimeView.alpha != 1 {
             UIView.animate(withDuration: 0.5) {
+                self.unselect_buttons()
                 self.mealTypeView.alpha = 0
                 self.mealTimeView.alpha = 1
+                self.mealTimeButton.isSelected = true
             }
         }
     }
@@ -40,16 +66,46 @@ class MealTypeVC: UIViewController {
     @IBAction func mealTypeButtonTapped(_ sender: UIButton) {
         if self.mealTypeView.alpha != 1 {
             UIView.animate(withDuration: 0.5) {
+                self.unselect_buttons()
                 self.mealTimeView.alpha = 0
                 self.mealTypeView.alpha = 1
+                self.mealTypeButton.isSelected = true
             }
+        }
+    }
+    
+    func unselect_buttons(){
+        for button in self.buttonBarButtons {
+            button.isSelected = false
         }
     }
     
 }
 
-// MealTypeView Methods
-extension MealTimeViewController {
+// MEAL TYPE METHODS
+extension MealTypeVC {
+    
+    @IBAction func meatButtonTapped(_ sender: UIButton) {
+        print("YOU CHOSE MEAT")
+    }
+    
+    @IBAction func vegetarianButtonTapped(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func veganButtonTapped(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func randomTypeButtonTapped(_ sender: UIButton) {
+        
+    }
+    
+    
+}
+
+// MEAL TIME METHODS
+extension MealTypeVC {
     
 }
 

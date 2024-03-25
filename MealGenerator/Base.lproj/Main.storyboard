@@ -33,7 +33,7 @@
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="filled" title="Meat"/>
                                                                 <connections>
-                                                                    <action selector="meatButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="0ie-ib-jmN"/>
+                                                                    <action selector="meatButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="vRD-Ox-yH5"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GH2-Xv-Jbg" userLabel="Vegetarian">
@@ -42,17 +42,24 @@
                                                                 <buttonConfiguration key="configuration" style="filled" title="Vegetarian"/>
                                                                 <connections>
                                                                     <action selector="buttonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="J20-Ma-07M"/>
+                                                                    <action selector="vegetarianButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="xfH-N4-Byn"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOz-kw-OFx" userLabel="Vegan">
                                                                 <rect key="frame" x="0.0" y="525" width="241" height="212.66666666666663"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="filled" title="Vegan"/>
+                                                                <connections>
+                                                                    <action selector="veganButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="U8E-cz-bfr"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3fJ-2g-PTf">
                                                                 <rect key="frame" x="0.0" y="787.66666666666663" width="241" height="212.33333333333337"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="filled" title="Random"/>
+                                                                <connections>
+                                                                    <action selector="randomTypeButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="h58-Gk-oPu"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>
@@ -143,7 +150,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ihm-0j-CzE">
                                                 <rect key="frame" x="0.0" y="0.0" width="78.666666666666671" height="85.333333333333329"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="tinted" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="tinted" image="fork.knife.circle" catalog="system"/>
                                                 <connections>
                                                     <action selector="mealTypeButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="QBt-1Q-2lc"/>
                                                 </connections>
@@ -151,7 +158,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsa-eH-ihV">
                                                 <rect key="frame" x="78.666666666666657" y="0.0" width="78.666666666666657" height="85.333333333333329"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="tinted" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="tinted" image="fitness.timer.fill" catalog="system"/>
                                                 <connections>
                                                     <action selector="mealTimeButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="jnI-jI-2zT"/>
                                                 </connections>
@@ -159,7 +166,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXN-2e-fVP">
                                                 <rect key="frame" x="157.33333333333334" y="0.0" width="78.333333333333343" height="85.333333333333329"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="tinted" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="tinted" image="brain.filled.head.profile" catalog="system"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuZ-bl-HR6">
                                                 <rect key="frame" x="235.66666666666666" y="0.0" width="78.666666666666657" height="85.333333333333329"/>
@@ -223,8 +230,14 @@
                     <tabBarItem key="tabBarItem" systemItem="bookmarks" id="JBi-wz-z29"/>
                     <navigationItem key="navigationItem" id="meN-xD-LNe"/>
                     <connections>
+                        <outlet property="mealTimeButton" destination="zsa-eH-ihV" id="nab-Yw-hIN"/>
                         <outlet property="mealTimeView" destination="ybH-Bd-fiE" id="nMw-cw-pGz"/>
+                        <outlet property="mealTypeButton" destination="Ihm-0j-CzE" id="17Y-dw-ml8"/>
                         <outlet property="mealTypeView" destination="C5T-JO-H7s" id="O7p-jk-JhZ"/>
+                        <outlet property="meatButton" destination="ADc-F2-OQD" id="AGt-0i-8Gp"/>
+                        <outlet property="randomType" destination="3fJ-2g-PTf" id="BoB-sU-QIG"/>
+                        <outlet property="veganButton" destination="kOz-kw-OFx" id="zaf-5o-1s5"/>
+                        <outlet property="vegetarianButton" destination="GH2-Xv-Jbg" id="2m6-RN-rpu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sxf-rC-YIx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -321,6 +334,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="brain.filled.head.profile" catalog="system" width="120" height="128"/>
+        <image name="fitness.timer.fill" catalog="system" width="128" height="123"/>
+        <image name="fork.knife.circle" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
