@@ -189,18 +189,18 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBM-PX-hBl">
                                                 <rect key="frame" x="0.0" y="0.0" width="273" height="70"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f1V-l1-Ske">
-                                                        <rect key="frame" x="20" y="0.0" width="253" height="70"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zusätzliche Anmerkung" textAlignment="natural" minimumFontSize="20" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="f1V-l1-Ske">
+                                                        <rect key="frame" x="20" y="10" width="253" height="50"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstItem="f1V-l1-Ske" firstAttribute="top" secondItem="rBM-PX-hBl" secondAttribute="top" id="QdN-oW-bXg"/>
-                                                    <constraint firstItem="f1V-l1-Ske" firstAttribute="leading" secondItem="rBM-PX-hBl" secondAttribute="leading" constant="20" id="S8J-hB-JlT"/>
-                                                    <constraint firstAttribute="bottom" secondItem="f1V-l1-Ske" secondAttribute="bottom" id="gO6-Sc-pYb"/>
-                                                    <constraint firstAttribute="trailing" secondItem="f1V-l1-Ske" secondAttribute="trailing" id="lKf-rC-Eeo"/>
+                                                    <constraint firstAttribute="trailing" secondItem="f1V-l1-Ske" secondAttribute="trailing" id="5ki-xr-QiT"/>
+                                                    <constraint firstItem="f1V-l1-Ske" firstAttribute="leading" secondItem="rBM-PX-hBl" secondAttribute="leading" constant="20" id="bzs-r0-5xB"/>
+                                                    <constraint firstAttribute="bottom" secondItem="f1V-l1-Ske" secondAttribute="bottom" constant="10" id="iQi-mA-jJM"/>
+                                                    <constraint firstItem="f1V-l1-Ske" firstAttribute="top" secondItem="rBM-PX-hBl" secondAttribute="top" constant="10" id="st5-Vh-GSn"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="VIf-lK-AtF">
@@ -275,18 +275,18 @@
                                                     <action selector="mealTimeButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="jnI-jI-2zT"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuZ-bl-HR6">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QMy-kE-0i1">
                                                 <rect key="frame" x="157.33333333333334" y="0.0" width="78.333333333333343" height="85.333333333333329"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="tinted" title="Button"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuZ-bl-HR6">
+                                                <rect key="frame" x="235.66666666666666" y="0.0" width="78.666666666666657" height="85.333333333333329"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="tinted" image="carrot" catalog="system"/>
                                                 <connections>
                                                     <action selector="customPresetButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="ZM0-78-115"/>
                                                 </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QMy-kE-0i1">
-                                                <rect key="frame" x="235.66666666666666" y="0.0" width="78.666666666666657" height="85.333333333333329"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="tinted" title="Button"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXN-2e-fVP">
                                                 <rect key="frame" x="314.33333333333331" y="0.0" width="78.666666666666686" height="85.333333333333329"/>

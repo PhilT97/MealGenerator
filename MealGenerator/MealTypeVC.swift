@@ -88,6 +88,11 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         generateRecipeView.layer.cornerRadius = 20
         // Initiate View Array
         categoryViews = [mealTypeView, mealTimeView, customPresetView]
@@ -174,6 +179,8 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             
         }
     }
+    
+    
 
     
     
@@ -263,7 +270,27 @@ extension MealTypeVC {
     }
     
     @IBAction func generateRecipeButtonTapped(_ sender: UIButton) {
-        self.generateRecipeTextView.text = "Erstelle ein Rezept für ein \(mealGenerator.getCategory() ?? "zufälliges Gericht") zum/als \(mealGenerator.getMealTime() ?? "zufällige Mahlzeit")?"
+        let showGenerationText = "Erstelle ein Rezept für ein \(mealGenerator.getCategory() ?? "zufälliges Gericht") zum/als \(mealGenerator.getMealTime() ?? "zufällige Mahlzeit")? \n"
+        var additionalIngredients = ""
+        var withoutIngredients = ""
+        for entry in self.dataEntries {
+            if entry.sign == "+" {
+                if additionalIngredients == "" {
+                    additionalIngredients += "Mit: \n"
+                }
+                additionalIngredients += ("  " + entry.text + "\n")
+            }
+            else {
+                if withoutIngredients == "" {
+                    withoutIngredients += "Ohne: \n"
+                }
+                withoutIngredients += ("  " + entry.text + "\n")
+            }
+        }
+        
+        self.generateRecipeTextView.text = showGenerationText + additionalIngredients + withoutIngredients
+    
+        
         self.generateRecipeView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
         self.generateRecipeView.alpha = 1
         UIView.animate(withDuration: 0.2) {
@@ -455,7 +482,30 @@ extension MealTypeVC {
 
 extension MealTypeVC {
     private func tryGpt(){
-        let prompt = "erstelle ein Rezept für ein \(mealGenerator.getCategory() ?? "zufälliges Gericht") zum/als \(mealGenerator.getMealTime() ?? "zufällige Mahlzeit"), formattiert als swift string ohne Deklaration, Ausgabe soll nur der String Inhalt sein und so aussehen: Name des Gerichts \n Zutaten \n Zubereitung"
+        var prompt = "erstelle ein Rezept für ein \(mealGenerator.getCategory() ?? "zufälliges Gericht") zum/als \(mealGenerator.getMealTime() ?? "zufällige Mahlzeit"), formattiert als swift string ohne Deklaration,"
+        let instruction = "Ausgabe soll nur der String Inhalt sein und so aussehen: Name des Gerichts \n Zutaten \n Zubereitung"
+        var additions = ""
+        var without = ""
+        if !self.dataEntries.isEmpty {
+            for entry in self.dataEntries {
+                if entry.sign == "+" {
+                    if additions == ""{
+                        additions += "Rezept soll enthalten: "
+                    }
+                    additions += (entry.text + ", ")
+                }
+                else {
+                    if without == "" {
+                        without += "Rezept soll nicht enthalten: "
+                    }
+                    without += (entry.text + ", ")
+                    
+                }
+            }
+        }
+        
+        prompt += prompt + additions + without + instruction
+        
         openAI.sendChatCompletion(newMessage: AIMessage(role: .user, content: prompt ), previousMessages: [], model: .gptV3_5(.gptTurbo), maxTokens: 2048, n: 1, completion: { [weak self] result in
             DispatchQueue.main.async { self?.stopActivityIndicator() }
             
@@ -488,6 +538,10 @@ extension MealTypeVC {
         self.transparancyView.alpha = 0
         self.generateRecipeView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
         self.generateRecipeView.alpha = 0
+        self.dataEntries.removeAll()
+        self.customPresetTableView.reloadData()
+        self.unselect_mealTimeButtons()
+        self.unselect_mealTypeButtons()
         performSegue(withIdentifier: "generateRecipeSegueID", sender: nil)
     }
     
