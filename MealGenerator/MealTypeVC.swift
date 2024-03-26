@@ -8,13 +8,28 @@
 import Foundation
 import OpenAIKit
 import UIKit
+import MapKit
 
-class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
-    
+class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     
     private let lightBlue = UIColor(red: 213.0/255.0, green: 230.0/255.0, blue: 253/255.0, alpha: 1)
+    var countryList = [
+        "Afghanistan", "Albanien", "Algerien", "Andorra","Angola","Antigua und Barbuda","Argentinien","Armenien","Aserbaidschan","Australien","Bahamas","Bahrain","Bangladesch","Barbados","Belarus","Belgien","Belize","Benin","Bhutan","Bolivien","Bosnien und Herzegowina","Botswana","Brasilien","Brunei","Bulgarien","Burkina Faso","Burundi","Cabo Verde","Chile","China","Cookinseln","Costa Rica","Dänemark","Deutschland","Dominica","Dominikanische Republik","Dschibuti","Ecuador","El Salvador","Elfenbeinküste","Eritrea","Estland","Eswatini","Fidschi","Finnland","Frankreich","Gabun","Gambia","Georgien","Ghana","Grenada","Griechenland","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Indien","Indonesien","Irak","Iran","Irland","Island","Israel","Italien","Jamaika","Japan","Jemen","Jordanien","Kambodscha","Kamerun","Kanada","Kap Verde","Kasachstan","Katar","Kenia","Kirgisistan","Kiribati","Kolumbien","Komoren","Kongo, Demokratische Republik des","Kongo, Republik des","Korea, Nord","Korea, Süd","Kosovo","Kroatien","Kuba","Kuwait","Laos","Lesotho","Lettland","Libanon","Liberia","Libyen","Liechtenstein","Litauen","Luxemburg","Madagaskar","Malawi","Malaysia","Malediven","Mali","Malta","Marokko","Marshallinseln","Mauretanien","Mauritius","Mexiko","Mikronesien","Moldawien","Monaco","Mongolei","Montenegro","Mosambik","Myanmar","Namibia","Nauru","Nepal","Neuseeland","Nicaragua","Niederlande","Niger","Nigeria","Nordmazedonien","Norwegen","Oman","Österreich","Pakistan","Palau","Panama","Papua-Neuguinea","Paraguay","Peru","Philippinen","Polen","Portugal","Ruanda","Rumänien","Russland","Salomonen","Sambia","Samoa","San Marino","São Tomé und Príncipe","Saudi-Arabien","Schweden","Schweiz","Senegal","Serbien","Seychellen","Sierra Leone","Simbabwe","Singapur","Slowakei","Slowenien","Somalia","Spanien","Sri Lanka","St. Kitts und Nevis","St. Lucia","St. Vincent und die Grenadinen","Südafrika","Sudan","Südsudan","Suriname","Syrien","Tadschikistan","Taiwan","Tansania","Thailand","Timor-Leste","Togo","Tonga","Trinidad und Tobago","Tschad","Tschechien","Tunesien","Türkei","Turkmenistan","Tuvalu","Uganda","Ukraine","Ungarn","Uruguay","Usbekistan","Vanuatu","Vatikanstadt","Venezuela","Vereinigte Arabische Emirate","Vereinigtes Königreich","Vereinigte Staaten","Vietnam","Zentralafrikanische Republik","Zypern"
+    ]
+
     
+    // Country View
+    
+    @IBOutlet var globusMapView: MKMapView!
+    @IBOutlet var countryPickerView: UIPickerView!
+    @IBOutlet var countryTrashButton: UIButton!
+    
+    @IBAction func countryTrashButtonTapped (_ sender: UIButton){
+        let allAnnotations = self.globusMapView.annotations
+        self.globusMapView.removeAnnotations(allAnnotations)
+        mealGenerator.setCountry(country: "")
+    }
     
     // Custom Preset View
     var dataEntries: [dataEntry] = []
@@ -36,6 +51,7 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     @IBOutlet var mealTypeView: UIView!
     @IBOutlet var mealTimeView: UIView!
     @IBOutlet var customPresetView: UIView!
+    @IBOutlet var countryView: UIView!
     
     
     @IBOutlet var transparancyView: UIView!
@@ -48,6 +64,9 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     @IBOutlet var mealTypeButton: UIButton!
     @IBOutlet var mealTimeButton: UIButton!
     @IBOutlet var customPresetButton: UIButton!
+    @IBOutlet var countryButton: UIButton!
+    
+    
     
     
     
@@ -95,9 +114,9 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         
         generateRecipeView.layer.cornerRadius = 20
         // Initiate View Array
-        categoryViews = [mealTypeView, mealTimeView, customPresetView]
+        categoryViews = [mealTypeView, mealTimeView, customPresetView, countryView]
         // initiate Button Arrays
-        buttonBarButtons = [mealTypeButton, mealTimeButton, customPresetButton]
+        buttonBarButtons = [mealTypeButton, mealTimeButton, customPresetButton, countryButton]
         mealTypeButtons = [meatButton, vegetarianButton, veganButton, randomType]
         for button in mealTypeButtons {
             button.backgroundColor = UIColor.clear
@@ -134,6 +153,9 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        // country Funcitonality
+        countryPickerView.delegate = self
+        countryPickerView.dataSource = self
         
         // keyboard functionality
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -148,7 +170,81 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         customPresetTableView.dataSource = self
         customPresetTableView.delegate = self
         
+        // country functionality
+        globusMapView.mapType = .hybridFlyover
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(mapTapped(_:)))
+        globusMapView.addGestureRecognizer(tapRecognizer)
+    }
+    // Country Methods
+    @objc func mapTapped(_ sender: UITapGestureRecognizer) {
+        let touchLocation = sender.location(in: globusMapView)
+        let locationCoordinate = globusMapView.convert(touchLocation, toCoordinateFrom: globusMapView)
         
+        let geocoder = CLGeocoder()
+        let location = CLLocation(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
+        
+        geocoder.reverseGeocodeLocation(location) { [weak self] (placemarks, error) in guard let strongSelf = self else {return}
+            if let error = error {
+                print("Reverse geocoding failed: \(error)")
+                return
+            }
+            
+            if let placemarks = placemarks, let placemark = placemarks.first, let landName = placemark.country {
+                let allAnnotations = strongSelf.globusMapView.annotations
+                strongSelf.globusMapView.removeAnnotations(allAnnotations)
+                if !strongSelf.countryList.contains(landName) {
+                    strongSelf.countryList.append(landName)
+                    DispatchQueue.main.async {
+                        self?.countryPickerView.reloadAllComponents()
+                    }
+                }
+                if let index = self?.countryList.firstIndex(of: landName) {
+                    self?.countryPickerView.selectRow(index, inComponent: 0, animated: true)
+                }
+                mealGenerator.setCountry(country: landName)
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = locationCoordinate
+                annotation.title = landName
+                strongSelf.globusMapView.addAnnotation(annotation)
+            }
+            
+        }
+        
+    }
+    // Country Picker Methods
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return countryList.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return countryList[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        mealGenerator.setCountry(country: countryList[row])
+        centerOnLand(name: countryList[row])
+        
+    }
+    
+    func centerOnLand(name: String){
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(name) { [weak self] (placemarks, error) in
+            guard let strongSelf = self, let placemark = placemarks?.first, let location = placemark.location else {return}
+            
+            let allAnnotations = strongSelf.globusMapView.annotations
+            strongSelf.globusMapView.removeAnnotations(allAnnotations)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location.coordinate
+            annotation.title = name
+            strongSelf.globusMapView.addAnnotation(annotation)
+            let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 1000000, longitudinalMeters: 1000000)
+            strongSelf.globusMapView.setRegion(region, animated: true)
+            
+        }
     }
     
     // Keyboard Methods
@@ -269,8 +365,25 @@ extension MealTypeVC {
         }
     }
     
+    @IBAction func countryButtonTapped(_ sender: UIButton) {
+        if self.countryView.alpha != 1 {
+            UIView.animate(withDuration: 0.5) {
+                self.unselect_buttonBarButtons()
+                self.hide_views()
+                self.countryView.alpha = 1
+                self.countryView.isHidden = false
+                self.countryButton.isSelected = true
+            }
+        }
+    }
+    
     @IBAction func generateRecipeButtonTapped(_ sender: UIButton) {
-        let showGenerationText = "Erstelle ein Rezept für ein \(mealGenerator.getCategory() ?? "zufälliges Gericht") zum/als \(mealGenerator.getMealTime() ?? "zufällige Mahlzeit")? \n"
+        var countryText = ""
+        if mealGenerator.getCountry() != "" {
+            countryText = " aus " + (mealGenerator.getCountry() ?? "")
+        }
+        
+        let showGenerationText = "Erstelle ein Rezept" + countryText + " für ein \(mealGenerator.getCategory() ?? "zufälliges Gericht") zum/als \(mealGenerator.getMealTime() ?? "zufällige Mahlzeit")? \n"
         var additionalIngredients = ""
         var withoutIngredients = ""
         for entry in self.dataEntries {
@@ -486,6 +599,10 @@ extension MealTypeVC {
         let instruction = "Ausgabe soll nur der String Inhalt sein und so aussehen: Name des Gerichts \n Zutaten \n Zubereitung"
         var additions = ""
         var without = ""
+        var country = ""
+        if mealGenerator.getCountry() != "" {
+            country = "das Rezept kommt aus dem Land:" + (mealGenerator.getCountry() ?? "") + ", "
+        }
         if !self.dataEntries.isEmpty {
             for entry in self.dataEntries {
                 if entry.sign == "+" {
@@ -504,7 +621,7 @@ extension MealTypeVC {
             }
         }
         
-        prompt += prompt + additions + without + instruction
+        prompt += prompt + country + additions + without + instruction
         
         openAI.sendChatCompletion(newMessage: AIMessage(role: .user, content: prompt ), previousMessages: [], model: .gptV3_5(.gptTurbo), maxTokens: 2048, n: 1, completion: { [weak self] result in
             DispatchQueue.main.async { self?.stopActivityIndicator() }
