@@ -10,7 +10,7 @@ import OpenAIKit
 import UIKit
 import MapKit
 
-class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIScrollViewDelegate {
     
     
     private let lightBlue = UIColor(red: 213.0/255.0, green: 230.0/255.0, blue: 253/255.0, alpha: 1)
@@ -78,11 +78,22 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     // Meal Type Button Outlets
     
     @IBOutlet var meatButton: UIButton!
+    @IBOutlet var meatButton2: UIButton!
     @IBOutlet var vegetarianButton: UIButton!
     @IBOutlet var veganButton: UIButton!
     @IBOutlet var randomType: UIButton!
+    @IBOutlet var randomType2: UIButton!
     
     @IBOutlet var mealTypeButtons: [UIButton]!
+    
+    // Meal Type Scroll View
+    @IBOutlet var mealTypeScrollView: UIScrollView!
+    private var startOffset:CGPoint!
+    private var endOffset:CGPoint!
+    private var firstPage = 1
+    private var lastPage = 4
+    
+    
     
     // Meal Time Button Outlets
     @IBOutlet var breakfastButton: UIButton!
@@ -158,6 +169,13 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         
         
         super.viewDidLoad()
+        // Initiate scroll view
+        mealTypeScrollView.delegate = self
+        let width = mealTypeScrollView.frame.size.width
+        startOffset = CGPoint(x: width * CGFloat(firstPage), y: 0)
+        mealTypeScrollView.contentOffset = startOffset
+        
+        
         // Do any additional setup after loading the view.
         // country Funcitonality
         countryPickerView.delegate = self
@@ -181,6 +199,22 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(mapTapped(_:)))
         globusMapView.addGestureRecognizer(tapRecognizer)
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let contentWidth = scrollView.contentSize.width
+        let width = scrollView.bounds.size.width
+        startOffset = CGPoint(x: width * CGFloat(firstPage), y: 0)
+        endOffset = CGPoint(x: width * CGFloat(lastPage), y: 0)
+        let offset = scrollView.contentOffset.x
+        
+        if offset >= contentWidth - width {
+            scrollView.contentOffset = startOffset
+        }
+        if offset <= 0 {
+            scrollView.contentOffset = endOffset
+        }
+    }
+    
     // Country Methods
     @objc func mapTapped(_ sender: UITapGestureRecognizer) {
         let touchLocation = sender.location(in: globusMapView)
@@ -285,6 +319,10 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
 
     
+    
+}
+// Scroll view methods
+extension MealTypeVC {
     
 }
 
@@ -464,6 +502,21 @@ extension MealTypeVC {
         
     }
     
+    @IBAction func meatButton2Tapped(_ sender: UIButton) {
+        if meatButton2.isSelected {
+            mealGenerator.setDefaultCategory()
+            unselect_mealTypeButtons()
+            meatButton2.isSelected = false
+        }
+        else {
+            unselect_mealTypeButtons()
+            mealGenerator.setCategory(category: "Fleischgericht")
+            meatButton2.tintColor = lightBlue
+            meatButton2.isSelected = true
+        }
+        
+    }
+    
     @IBAction func vegetarianButtonTapped(_ sender: UIButton) {
         if vegetarianButton.isSelected {
             mealGenerator.setDefaultCategory()
@@ -506,6 +559,22 @@ extension MealTypeVC {
         }
         
     }
+    
+    @IBAction func randomType2ButtonTapped(_ sender: UIButton) {
+        if randomType2.isSelected {
+            mealGenerator.setDefaultCategory()
+            unselect_mealTypeButtons()
+            randomType2.isSelected = false
+        }
+        else {
+            unselect_mealTypeButtons()
+            mealGenerator.setCategory(category: "Zufälliges Gericht")
+            randomType2.tintColor = lightBlue
+            randomType2.isSelected = true
+        }
+        
+    }
+    
     
     private func unselect_mealTypeButtons() {
         for button in mealTypeButtons where button.isSelected {

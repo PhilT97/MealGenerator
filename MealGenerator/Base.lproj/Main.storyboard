@@ -20,77 +20,132 @@
                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C5T-JO-H7s" userLabel="MealTypeView">
                                 <rect key="frame" x="0.0" y="169.66666666666663" width="393" height="514"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OWr-Bh-cvX">
-                                        <rect key="frame" x="76" y="0.0" width="240" height="514"/>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWr-Bh-cvX">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="514"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZ1-i1-vxV">
-                                                <rect key="frame" x="0.0" y="0.0" width="241" height="1000"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQ8-UE-TQL">
+                                                <rect key="frame" x="0.0" y="0.0" width="2358" height="514"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="UYe-fQ-x6K">
-                                                        <rect key="frame" x="0.0" y="0.0" width="241" height="1000"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="irg-5u-xpr">
+                                                        <rect key="frame" x="0.0" y="0.0" width="2358" height="514"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ADc-F2-OQD">
-                                                                <rect key="frame" x="0.0" y="0.0" width="241" height="212.33333333333334"/>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="filled" title="Fleischgericht"/>
-                                                                <connections>
-                                                                    <action selector="meatButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="vRD-Ox-yH5"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GH2-Xv-Jbg" userLabel="Vegetarian">
-                                                                <rect key="frame" x="0.0" y="262.33333333333337" width="241" height="212.66666666666663"/>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="filled" title="Vegetarisch"/>
-                                                                <connections>
-                                                                    <action selector="vegetarianButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="xfH-N4-Byn"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOz-kw-OFx" userLabel="Vegan">
-                                                                <rect key="frame" x="0.0" y="525" width="241" height="212.33333333333337"/>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="filled" title="Vegan"/>
-                                                                <connections>
-                                                                    <action selector="veganButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="U8E-cz-bfr"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3fJ-2g-PTf">
-                                                                <rect key="frame" x="0.0" y="787.33333333333337" width="241" height="212.66666666666663"/>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="filled" title="Keine Präferenz"/>
-                                                                <connections>
-                                                                    <action selector="randomTypeButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="h58-Gk-oPu"/>
-                                                                </connections>
-                                                            </button>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="foG-b0-6BF">
+                                                                <rect key="frame" x="0.0" y="0.0" width="393" height="514"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EkI-G3-Pod">
+                                                                        <rect key="frame" x="110.15907648148504" y="172.75746117544259" width="170" height="169.9999999999286"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="filled" title="Keine Präferenz"/>
+                                                                        <connections>
+                                                                            <action selector="randomType2ButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="5RI-on-uvB"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="05T-f9-tcr">
+                                                                <rect key="frame" x="393" y="0.0" width="393" height="514"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBc-mh-IEb">
+                                                                        <rect key="frame" x="111" y="171.33333333333337" width="170" height="169.9999999999286"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="filled" title="Fleischgericht"/>
+                                                                        <connections>
+                                                                            <action selector="meatButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="DZa-IW-yo9"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5up-SF-fGX">
+                                                                <rect key="frame" x="786" y="0.0" width="393" height="514"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GkM-Rt-hng">
+                                                                        <rect key="frame" x="109.04598631212025" y="172.08302050975044" width="169.99999999999977" height="169.99999999997635"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="filled" title="Vegetarisch"/>
+                                                                        <connections>
+                                                                            <action selector="vegetarianButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="OGi-ah-25i"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KOV-Ab-hJ4">
+                                                                <rect key="frame" x="1179" y="0.0" width="393" height="514"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MBQ-Ka-wNn">
+                                                                        <rect key="frame" x="110.87569600187885" y="172.08302050972293" width="169.9999999999045" height="169.99999999997635"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="filled" title="Vegan"/>
+                                                                        <connections>
+                                                                            <action selector="veganButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="HSi-d6-JUn"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9v8-b2-THp">
+                                                                <rect key="frame" x="1572" y="0.0" width="393" height="514"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHj-Kt-EEc">
+                                                                        <rect key="frame" x="109.04598631210661" y="172.08302050972293" width="169.99999999999977" height="169.99999999997635"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="filled" title="Keine Präferenz"/>
+                                                                        <connections>
+                                                                            <action selector="randomTypeButtonTapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="MET-A6-V9R"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D4E-gW-SIG">
+                                                                <rect key="frame" x="1965" y="0.0" width="393" height="514"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ysB-DI-91I">
+                                                                        <rect key="frame" x="110.87569600187885" y="172.08302050972293" width="169.9999999999045" height="169.99999999997635"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="filled" title="Fleischgericht"/>
+                                                                        <connections>
+                                                                            <action selector="meatButton2Tapped:" destination="yqe-fQ-NyN" eventType="touchUpInside" id="wQ7-py-jYG"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </view>
                                                         </subviews>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="1000" id="ct0-FZ-t1T"/>
-                                                        </constraints>
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="1000" id="AXK-oF-k6M"/>
-                                                    <constraint firstAttribute="trailing" secondItem="UYe-fQ-x6K" secondAttribute="trailing" id="AnK-Ky-L57"/>
-                                                    <constraint firstItem="UYe-fQ-x6K" firstAttribute="top" secondItem="UZ1-i1-vxV" secondAttribute="top" id="ShE-YU-nMT"/>
-                                                    <constraint firstAttribute="bottom" secondItem="UYe-fQ-x6K" secondAttribute="bottom" id="aDm-7X-yOl"/>
-                                                    <constraint firstItem="UYe-fQ-x6K" firstAttribute="leading" secondItem="UZ1-i1-vxV" secondAttribute="leading" id="noV-9a-GhP"/>
+                                                    <constraint firstAttribute="bottom" secondItem="irg-5u-xpr" secondAttribute="bottom" id="20c-l3-SeI"/>
+                                                    <constraint firstAttribute="width" constant="2358" id="JK3-hE-NNz"/>
+                                                    <constraint firstItem="irg-5u-xpr" firstAttribute="top" secondItem="xQ8-UE-TQL" secondAttribute="top" id="nHE-RA-BTB"/>
+                                                    <constraint firstAttribute="trailing" secondItem="irg-5u-xpr" secondAttribute="trailing" id="p95-aP-q3j"/>
+                                                    <constraint firstItem="irg-5u-xpr" firstAttribute="leading" secondItem="xQ8-UE-TQL" secondAttribute="leading" id="r2C-mZ-LOT"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="UZ1-i1-vxV" firstAttribute="top" secondItem="OWr-Bh-cvX" secondAttribute="top" id="74B-E4-8fs"/>
-                                            <constraint firstItem="UZ1-i1-vxV" firstAttribute="leading" secondItem="OWr-Bh-cvX" secondAttribute="leading" id="mQK-HS-HUH"/>
-                                            <constraint firstAttribute="trailing" secondItem="UZ1-i1-vxV" secondAttribute="trailing" id="ra5-Tb-ROv"/>
-                                            <constraint firstAttribute="bottom" secondItem="UZ1-i1-vxV" secondAttribute="bottom" id="wgF-2K-s9N"/>
+                                            <constraint firstItem="xQ8-UE-TQL" firstAttribute="top" secondItem="OWr-Bh-cvX" secondAttribute="top" id="2Mb-1P-4ee"/>
+                                            <constraint firstAttribute="bottom" secondItem="xQ8-UE-TQL" secondAttribute="bottom" id="RR1-rz-R4e"/>
+                                            <constraint firstAttribute="trailing" secondItem="xQ8-UE-TQL" secondAttribute="trailing" id="pSN-zd-bNk"/>
+                                            <constraint firstItem="xQ8-UE-TQL" firstAttribute="leading" secondItem="OWr-Bh-cvX" secondAttribute="leading" id="uHo-6a-Geb"/>
                                         </constraints>
                                     </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="OWr-Bh-cvX" firstAttribute="top" secondItem="C5T-JO-H7s" secondAttribute="top" id="CKK-oV-Ups"/>
-                                    <constraint firstAttribute="bottom" secondItem="OWr-Bh-cvX" secondAttribute="bottom" id="O5P-yO-1ae"/>
-                                    <constraint firstItem="OWr-Bh-cvX" firstAttribute="leading" secondItem="C5T-JO-H7s" secondAttribute="leading" constant="76" id="VaW-DQ-JFR"/>
-                                    <constraint firstAttribute="trailing" secondItem="OWr-Bh-cvX" secondAttribute="trailing" constant="77" id="xvW-oy-SEi"/>
+                                    <constraint firstAttribute="bottom" secondItem="OWr-Bh-cvX" secondAttribute="bottom" id="Iec-ES-nRG"/>
+                                    <constraint firstItem="OWr-Bh-cvX" firstAttribute="leading" secondItem="C5T-JO-H7s" secondAttribute="leading" id="g6f-a8-jlT"/>
+                                    <constraint firstAttribute="trailing" secondItem="OWr-Bh-cvX" secondAttribute="trailing" id="h6a-Lm-VPA"/>
+                                    <constraint firstItem="OWr-Bh-cvX" firstAttribute="top" secondItem="C5T-JO-H7s" secondAttribute="top" id="zzX-Nm-s0w"/>
                                 </constraints>
                             </view>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybH-Bd-fiE" userLabel="MealTimeView">
@@ -121,7 +176,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="g2f-Vl-gdm">
-                                                <rect key="frame" x="0.0" y="195.66666666666674" width="353" height="175.66666666666663"/>
+                                                <rect key="frame" x="0.0" y="195.66666666666669" width="353" height="175.66666666666669"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUZ-nl-aDS">
                                                         <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="175.66666666666666"/>
@@ -316,7 +371,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="STt-l4-Dek" userLabel="BottomView">
-                                <rect key="frame" x="0.0" y="683.66666666666652" width="393" height="85.333333333333485"/>
+                                <rect key="frame" x="0.0" y="683.66666666666663" width="393" height="85.333333333333371"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qUR-Xp-KaJ">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="85.333333333333329"/>
@@ -399,7 +454,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="3Qd-7o-LqE">
-                                                <rect key="frame" x="0.0" y="346.66666666666674" width="273" height="34.333333333333258"/>
+                                                <rect key="frame" x="0.0" y="346.66666666666674" width="273" height="34.333333333333314"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAT-M7-o1p">
                                                         <rect key="frame" x="0.0" y="0.0" width="126.66666666666667" height="34.333333333333336"/>
@@ -439,7 +494,6 @@
                             <constraint firstItem="C5T-JO-H7s" firstAttribute="height" secondItem="iVd-2z-dm7" secondAttribute="height" multiplier="0.603286" id="3Sb-8j-hYA"/>
                             <constraint firstItem="zjk-Z8-5nV" firstAttribute="leading" secondItem="Y0m-yR-4mm" secondAttribute="leading" constant="50" id="47l-U9-u0J"/>
                             <constraint firstItem="uzZ-bl-Yww" firstAttribute="top" secondItem="Y0m-yR-4mm" secondAttribute="top" id="52N-9t-JbQ"/>
-                            <constraint firstItem="UZ1-i1-vxV" firstAttribute="width" secondItem="iVd-2z-dm7" secondAttribute="width" multiplier="0.613232" id="7e0-hC-K2f"/>
                             <constraint firstItem="PK7-sE-Lrt" firstAttribute="height" secondItem="iVd-2z-dm7" secondAttribute="height" multiplier="1.40845" id="7iL-wh-vv6"/>
                             <constraint firstItem="STt-l4-Dek" firstAttribute="top" secondItem="x77-hT-fCJ" secondAttribute="bottom" id="7mV-AQ-Oo4"/>
                             <constraint firstItem="Y0m-yR-4mm" firstAttribute="trailing" secondItem="zjk-Z8-5nV" secondAttribute="trailing" constant="50" id="And-UH-TvX"/>
@@ -454,7 +508,6 @@
                             <constraint firstItem="uzZ-bl-Yww" firstAttribute="leading" secondItem="Y0m-yR-4mm" secondAttribute="leading" id="N9z-Ih-Vng"/>
                             <constraint firstItem="C5T-JO-H7s" firstAttribute="width" secondItem="iVd-2z-dm7" secondAttribute="width" id="NgO-0K-MoP"/>
                             <constraint firstItem="Vqg-QH-Uub" firstAttribute="height" secondItem="iVd-2z-dm7" secondAttribute="height" multiplier="0.08" id="OZW-xw-kpu"/>
-                            <constraint firstItem="UZ1-i1-vxV" firstAttribute="height" secondItem="iVd-2z-dm7" secondAttribute="height" multiplier="1.17371" id="Ps4-SP-sUR"/>
                             <constraint firstItem="Y0m-yR-4mm" firstAttribute="bottom" secondItem="ybH-Bd-fiE" secondAttribute="bottom" constant="85" id="QaC-ZA-BRl"/>
                             <constraint firstItem="Y0m-yR-4mm" firstAttribute="trailing" secondItem="x77-hT-fCJ" secondAttribute="trailing" id="RIO-mO-yg8"/>
                             <constraint firstItem="C5T-JO-H7s" firstAttribute="leading" secondItem="Y0m-yR-4mm" secondAttribute="leading" id="SfC-vd-2ee"/>
@@ -477,8 +530,10 @@
                             <constraint firstItem="ybH-Bd-fiE" firstAttribute="leading" secondItem="Y0m-yR-4mm" secondAttribute="leading" id="mpO-fS-1Dr"/>
                             <constraint firstItem="STt-l4-Dek" firstAttribute="top" secondItem="4hv-i1-uTi" secondAttribute="bottom" id="ogM-6Y-aVD"/>
                             <constraint firstItem="7mE-Xr-gdK" firstAttribute="width" secondItem="iVd-2z-dm7" secondAttribute="width" id="qg7-LY-Eks"/>
+                            <constraint firstItem="xQ8-UE-TQL" firstAttribute="width" secondItem="iVd-2z-dm7" secondAttribute="width" multiplier="6" id="qqE-z1-SiD"/>
                             <constraint firstItem="zjk-Z8-5nV" firstAttribute="width" secondItem="iVd-2z-dm7" secondAttribute="width" multiplier="0.745547" id="shI-i1-owB"/>
                             <constraint firstItem="STt-l4-Dek" firstAttribute="top" secondItem="zjk-Z8-5nV" secondAttribute="bottom" constant="30" id="wEf-br-rfd"/>
+                            <constraint firstItem="xQ8-UE-TQL" firstAttribute="height" secondItem="iVd-2z-dm7" secondAttribute="height" multiplier="0.603286" id="wqk-T1-xQ3"/>
                             <constraint firstItem="uzZ-bl-Yww" firstAttribute="height" secondItem="iVd-2z-dm7" secondAttribute="height" multiplier="0.07" id="y9D-Gf-yJr"/>
                         </constraints>
                     </view>
@@ -504,15 +559,18 @@
                         <outlet property="mealTimeButton" destination="zsa-eH-ihV" id="nab-Yw-hIN"/>
                         <outlet property="mealTimeView" destination="ybH-Bd-fiE" id="nMw-cw-pGz"/>
                         <outlet property="mealTypeButton" destination="Ihm-0j-CzE" id="17Y-dw-ml8"/>
+                        <outlet property="mealTypeScrollView" destination="OWr-Bh-cvX" id="suV-VQ-OLf"/>
                         <outlet property="mealTypeView" destination="C5T-JO-H7s" id="O7p-jk-JhZ"/>
-                        <outlet property="meatButton" destination="ADc-F2-OQD" id="AGt-0i-8Gp"/>
+                        <outlet property="meatButton" destination="UBc-mh-IEb" id="IyX-Tu-koH"/>
+                        <outlet property="meatButton2" destination="ysB-DI-91I" id="J06-fU-BnM"/>
                         <outlet property="minusButton" destination="E2r-uK-Yvf" id="CBn-iL-LmD"/>
                         <outlet property="plusButton" destination="cbB-cX-fTL" id="cIF-HT-MfI"/>
-                        <outlet property="randomType" destination="3fJ-2g-PTf" id="BoB-sU-QIG"/>
+                        <outlet property="randomType" destination="CHj-Kt-EEc" id="uHZ-oh-qrl"/>
+                        <outlet property="randomType2" destination="EkI-G3-Pod" id="2v7-2S-7f5"/>
                         <outlet property="snackButton" destination="Vkt-eQ-9Cp" id="4lz-sO-6Tl"/>
                         <outlet property="transparancyView" destination="eD5-TT-boI" id="jNm-nI-ted"/>
-                        <outlet property="veganButton" destination="kOz-kw-OFx" id="zaf-5o-1s5"/>
-                        <outlet property="vegetarianButton" destination="GH2-Xv-Jbg" id="2m6-RN-rpu"/>
+                        <outlet property="veganButton" destination="MBQ-Ka-wNn" id="2kl-Te-pyU"/>
+                        <outlet property="vegetarianButton" destination="GkM-Rt-hng" id="Sam-66-vaC"/>
                         <segue destination="Ydb-zj-yBo" kind="show" identifier="generateRecipeSegueID" id="UzN-Ia-RcC"/>
                     </connections>
                 </viewController>
@@ -543,7 +601,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U8v-ZS-ys5" userLabel="BodyView">
-                                <rect key="frame" x="0.0" y="162.66666666666663" width="393" height="521.00000000000011"/>
+                                <rect key="frame" x="0.0" y="162.66666666666663" width="393" height="521"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TPD-HH-ibI" userLabel="InstructionsView">
                                         <rect key="frame" x="0.0" y="260.33333333333337" width="393" height="260.66666666666663"/>
@@ -667,7 +725,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a3A-NW-2sV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5849.6183206106871" y="-454.22535211267609"/>
+            <point key="canvasLocation" x="5021" y="449"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="3qM-AP-zPB">
@@ -704,7 +762,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9yB-BM-4v3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3951.9083969465646" y="-454.22535211267609"/>
+            <point key="canvasLocation" x="4207" y="-1161"/>
         </scene>
     </scenes>
     <resources>
@@ -727,7 +785,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
