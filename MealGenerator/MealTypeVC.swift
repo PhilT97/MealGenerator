@@ -630,7 +630,7 @@ extension MealTypeVC {
             case .success(let aiResult):
                 // Handle result actions
                 if let text = aiResult.choices.first?.message?.content {
-                    let recipe = "Hier ist ein Rezept für ein \(mealGenerator.getCategory() ?? "zufälliges Gericht") zum/als \(mealGenerator.getMealTime() ?? "zufällige Mahlzeit") \n" + text
+                    let recipe = text
                     mealGenerator.setRecipe(finalRecipe: recipe)
                     
                 }

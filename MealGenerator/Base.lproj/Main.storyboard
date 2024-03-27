@@ -121,7 +121,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="g2f-Vl-gdm">
-                                                <rect key="frame" x="0.0" y="195.66666666666669" width="353" height="175.66666666666669"/>
+                                                <rect key="frame" x="0.0" y="195.66666666666674" width="353" height="175.66666666666663"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUZ-nl-aDS">
                                                         <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="175.66666666666666"/>
@@ -316,7 +316,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="STt-l4-Dek" userLabel="BottomView">
-                                <rect key="frame" x="0.0" y="683.66666666666663" width="393" height="85.333333333333371"/>
+                                <rect key="frame" x="0.0" y="683.66666666666652" width="393" height="85.333333333333485"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qUR-Xp-KaJ">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="85.333333333333329"/>
@@ -399,7 +399,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="3Qd-7o-LqE">
-                                                <rect key="frame" x="0.0" y="346.66666666666674" width="273" height="34.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="346.66666666666674" width="273" height="34.333333333333258"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAT-M7-o1p">
                                                         <rect key="frame" x="0.0" y="0.0" width="126.66666666666667" height="34.333333333333336"/>
@@ -543,10 +543,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U8v-ZS-ys5" userLabel="BodyView">
-                                <rect key="frame" x="0.0" y="162.66666666666669" width="393" height="520.66666666666652"/>
+                                <rect key="frame" x="0.0" y="162.66666666666663" width="393" height="521.00000000000011"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TPD-HH-ibI" userLabel="InstructionsView">
-                                        <rect key="frame" x="0.0" y="260.33333333333337" width="393" height="260.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="260.33333333333337" width="393" height="260.66666666666663"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="s7M-et-sIz">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="278"/>
@@ -595,30 +595,30 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCo-Kl-6Fk" userLabel="BottomView">
-                                <rect key="frame" x="0.0" y="683.33333333333337" width="393" height="85"/>
+                                <rect key="frame" x="0.0" y="683.66666666666663" width="393" height="85.333333333333371"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="naf-Qe-S9x">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="85"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="85.333333333333329"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hzy-rz-95w">
-                                                <rect key="frame" x="0.0" y="0.0" width="98.333333333333329" height="85"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="98.333333333333329" height="85.333333333333329"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" image="pencil" catalog="system" title="Edit"/>
+                                                <buttonConfiguration key="configuration" style="filled" image="pencil" catalog="system"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nD0-Tb-oeL">
-                                                <rect key="frame" x="98.333333333333343" y="0.0" width="98.333333333333343" height="85"/>
+                                                <rect key="frame" x="98.333333333333343" y="0.0" width="98.333333333333343" height="85.333333333333329"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" image="timer.circle" catalog="system" title="Timer"/>
+                                                <buttonConfiguration key="configuration" style="filled" image="timer.circle" catalog="system"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E56-vk-XTQ">
-                                                <rect key="frame" x="196.66666666666666" y="0.0" width="97.999999999999972" height="85"/>
+                                                <rect key="frame" x="196.66666666666666" y="0.0" width="97.999999999999972" height="85.333333333333329"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.down" catalog="system" title="Save"/>
+                                                <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.down" catalog="system"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yj-2v-0j2">
-                                                <rect key="frame" x="294.66666666666669" y="0.0" width="98.333333333333314" height="85"/>
+                                                <rect key="frame" x="294.66666666666669" y="0.0" width="98.333333333333314" height="85.333333333333329"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" image="cart" catalog="system" title="Cart"/>
+                                                <buttonConfiguration key="configuration" style="filled" image="cart" catalog="system"/>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -655,6 +655,15 @@
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="topRated" id="ZNZ-6n-BKc"/>
                     <navigationItem key="navigationItem" id="Mlg-ux-zG1"/>
+                    <connections>
+                        <outlet property="cartButton" destination="4yj-2v-0j2" id="yK1-d1-S37"/>
+                        <outlet property="editButton" destination="hzy-rz-95w" id="IWb-es-1Tq"/>
+                        <outlet property="ingredientsTextView" destination="h19-g4-rrB" id="8MK-GC-wIV"/>
+                        <outlet property="instructionsTextView" destination="s7M-et-sIz" id="dqd-aQ-Wfv"/>
+                        <outlet property="saveButton" destination="E56-vk-XTQ" id="VVu-Lj-mAA"/>
+                        <outlet property="timerbutton" destination="nD0-Tb-oeL" id="aVk-au-Ofs"/>
+                        <outlet property="titleTextView" destination="Epr-K5-ojx" id="Pts-0R-nef"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a3A-NW-2sV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -707,7 +716,7 @@
         <image name="globe.europe.africa.fill" catalog="system" width="128" height="123"/>
         <image name="minus" catalog="system" width="128" height="26"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
-        <image name="plus" catalog="system" width="32" height="32"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square.and.arrow.down" catalog="system" width="112" height="128"/>
         <image name="timer.circle" catalog="system" width="128" height="123"/>
         <image name="trash" catalog="system" width="117" height="128"/>
