@@ -107,6 +107,12 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Globus Zoom
+        let camera = MKMapCamera()
+        camera.centerCoordinate = CLLocationCoordinate2D(latitude: 50.110924, longitude: 8.682127)
+        camera.altitude = 30000000
+        globusMapView.setCamera(camera, animated: true)
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -241,7 +247,7 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             annotation.coordinate = location.coordinate
             annotation.title = name
             strongSelf.globusMapView.addAnnotation(annotation)
-            let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 1000000, longitudinalMeters: 1000000)
+            let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 6000000, longitudinalMeters: 6000000)
             strongSelf.globusMapView.setRegion(region, animated: true)
             
         }
