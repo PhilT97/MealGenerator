@@ -164,10 +164,10 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         countryPickerView.dataSource = self
         
         // keyboard functionality
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        view.addGestureRecognizer(tapGesture)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+//        view.addGestureRecognizer(tapGesture)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
         
         customPresetTextField.delegate = self
@@ -450,13 +450,14 @@ extension MealTypeVC {
 extension MealTypeVC {
     // This extension manages the buttons on the Meal Type Chooser
     @IBAction func meatButtonTapped(_ sender: UIButton) {
-        unselect_mealTypeButtons()
-        mealGenerator.setCategory(category: "Fleischgericht")
         if meatButton.isSelected {
+            mealGenerator.setDefaultCategory()
             unselect_mealTypeButtons()
             meatButton.isSelected = false
         }
         else {
+            unselect_mealTypeButtons()
+            mealGenerator.setCategory(category: "Fleischgericht")
             meatButton.tintColor = lightBlue
             meatButton.isSelected = true
         }
@@ -464,39 +465,42 @@ extension MealTypeVC {
     }
     
     @IBAction func vegetarianButtonTapped(_ sender: UIButton) {
-        unselect_mealTypeButtons()
-        mealGenerator.setCategory(category: "Vegetarisches Gericht")
         if vegetarianButton.isSelected {
+            mealGenerator.setDefaultCategory()
             unselect_mealTypeButtons()
             vegetarianButton.isSelected = false
         }
         else {
+            unselect_mealTypeButtons()
+            mealGenerator.setCategory(category: "Vegetarisches Gericht")
             vegetarianButton.tintColor = lightBlue
             vegetarianButton.isSelected = true
         }
     }
     
     @IBAction func veganButtonTapped(_ sender: UIButton) {
-        unselect_mealTypeButtons()
-        mealGenerator.setCategory(category: "Veganes Gericht")
         if veganButton.isSelected {
+            mealGenerator.setDefaultCategory()
             unselect_mealTypeButtons()
             veganButton.isSelected = false
         }
         else {
+            unselect_mealTypeButtons()
+            mealGenerator.setCategory(category: "Veganes Gericht")
             veganButton.tintColor = lightBlue
             veganButton.isSelected = true
         }
     }
     
     @IBAction func randomTypeButtonTapped(_ sender: UIButton) {
-        unselect_mealTypeButtons()
-        mealGenerator.setCategory(category: "Zufälliges Gericht")
         if randomType.isSelected {
+            mealGenerator.setDefaultCategory()
             unselect_mealTypeButtons()
             randomType.isSelected = false
         }
         else {
+            unselect_mealTypeButtons()
+            mealGenerator.setCategory(category: "Zufälliges Gericht")
             randomType.tintColor = lightBlue
             randomType.isSelected = true
         }
@@ -504,7 +508,8 @@ extension MealTypeVC {
     }
     
     private func unselect_mealTypeButtons() {
-        for button in mealTypeButtons {
+        for button in mealTypeButtons where button.isSelected {
+            button.isSelected = false
             button.tintColor = UIColor.systemBlue
         }
     }
@@ -516,59 +521,64 @@ extension MealTypeVC {
 extension MealTypeVC {
     // This extensions manages the buttons on the Meal Time Chooser
     @IBAction func breakfastButtonTapped(_ sender: UIButton) {
-        unselect_mealTimeButtons()
-        mealGenerator.setMealTime(mealTime: "Frühstück")
         if breakfastButton.isSelected {
+            mealGenerator.setDefaultMealTime()
             unselect_mealTimeButtons()
             breakfastButton.isSelected = false
         }
         else {
+            unselect_mealTimeButtons()
+            mealGenerator.setMealTime(mealTime: "Frühstück")
             breakfastButton.tintColor = lightBlue
             breakfastButton.isSelected = true
         }
     }
     
     @IBAction func lunchButtonTapped(_ sender: UIButton) {
-        unselect_mealTimeButtons()
-        mealGenerator.setMealTime(mealTime: "Mittagessen")
         if lunchButton.isSelected {
+            mealGenerator.setDefaultMealTime()
             unselect_mealTimeButtons()
             lunchButton.isSelected = false
         }
         else {
+            unselect_mealTimeButtons()
+            mealGenerator.setMealTime(mealTime: "Mittagessen")
             lunchButton.tintColor = lightBlue
             lunchButton.isSelected = true
         }
     }
     
     @IBAction func dinnerButtonTapped(_ sender: UIButton) {
-        unselect_mealTimeButtons()
-        mealGenerator.setMealTime(mealTime: "Abendessen")
         if dinnerButton.isSelected {
+            mealGenerator.setDefaultMealTime()
             unselect_mealTimeButtons()
             dinnerButton.isSelected = false
         }
         else {
+            unselect_mealTimeButtons()
+            mealGenerator.setMealTime(mealTime: "Abendessen")
             dinnerButton.tintColor = lightBlue
             dinnerButton.isSelected = true
         }
     }
     
     @IBAction func snackButtonTapped(_ sender: UIButton) {
-        unselect_mealTimeButtons()
-        mealGenerator.setMealTime(mealTime: "Snack")
         if snackButton.isSelected {
+            mealGenerator.setDefaultMealTime()
             unselect_mealTimeButtons()
             snackButton.isSelected = false
         }
         else {
+            unselect_mealTimeButtons()
+            mealGenerator.setMealTime(mealTime: "Snack")
             snackButton.tintColor = lightBlue
             snackButton.isSelected = true
         }
     }
     
     private func unselect_mealTimeButtons() {
-        for button in mealTimeButtons {
+        for button in mealTimeButtons where button.isSelected {
+            button.isSelected = false
             button.tintColor = UIColor.systemBlue
         }
     }
