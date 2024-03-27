@@ -528,14 +528,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7rI-3v-8VU">
-                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZg-gV-uFK" userLabel="TopView">
+                                <rect key="frame" x="0.0" y="103.00000000000001" width="393" height="59.666666666666671"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qkm-ht-EsX">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="666"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="RECIPE TITLE" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Epr-K5-ojx">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U8v-ZS-ys5" userLabel="BodyView">
+                                <rect key="frame" x="0.0" y="162.66666666666669" width="393" height="520.66666666666652"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TPD-HH-ibI" userLabel="InstructionsView">
+                                        <rect key="frame" x="0.0" y="260.33333333333337" width="393" height="260.33333333333337"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1WV-Wo-uZT" userLabel="Recipe">
-                                                <rect key="frame" x="0.0" y="-7" width="393" height="654"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="s7M-et-sIz">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="278"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <color key="textColor" systemColor="labelColor"/>
@@ -544,31 +559,102 @@
                                             </textView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstItem="1WV-Wo-uZT" firstAttribute="leading" secondItem="qkm-ht-EsX" secondAttribute="leading" id="Q1X-hS-VZl"/>
-                                            <constraint firstItem="1WV-Wo-uZT" firstAttribute="top" secondItem="qkm-ht-EsX" secondAttribute="top" id="WfA-16-GZa"/>
-                                            <constraint firstAttribute="trailing" secondItem="1WV-Wo-uZT" secondAttribute="trailing" id="Wlc-tG-cyZ"/>
-                                            <constraint firstAttribute="bottom" secondItem="1WV-Wo-uZT" secondAttribute="bottom" id="w5g-95-mYq"/>
-                                        </constraints>
                                     </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="JJx-TC-QK4" userLabel="IngredientsView">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="260.33333333333331"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="h19-g4-rrB">
+                                                <rect key="frame" x="0.0" y="0.0" width="196.66666666666666" height="260.33333333333331"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <string key="text">Ingredients:
+- 1
+- 2
+- 3
+- 4</string>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hxl-NR-reS">
+                                                <rect key="frame" x="196.66666666666663" y="0.0" width="196.33333333333337" height="260.33333333333331"/>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="TPD-HH-ibI" firstAttribute="top" secondItem="JJx-TC-QK4" secondAttribute="bottom" id="Had-DS-9sc"/>
+                                    <constraint firstAttribute="trailing" secondItem="JJx-TC-QK4" secondAttribute="trailing" id="OBm-Jx-iEd"/>
+                                    <constraint firstItem="JJx-TC-QK4" firstAttribute="top" secondItem="U8v-ZS-ys5" secondAttribute="top" id="R15-9j-sO7"/>
+                                    <constraint firstItem="TPD-HH-ibI" firstAttribute="leading" secondItem="U8v-ZS-ys5" secondAttribute="leading" id="TKG-yd-qIx"/>
+                                    <constraint firstItem="TPD-HH-ibI" firstAttribute="width" secondItem="U8v-ZS-ys5" secondAttribute="width" id="XhF-qc-s7F"/>
+                                    <constraint firstItem="JJx-TC-QK4" firstAttribute="leading" secondItem="U8v-ZS-ys5" secondAttribute="leading" id="bfj-y8-aHg"/>
+                                    <constraint firstAttribute="trailing" secondItem="TPD-HH-ibI" secondAttribute="trailing" id="c9J-4y-UoC"/>
+                                    <constraint firstAttribute="bottom" secondItem="TPD-HH-ibI" secondAttribute="bottom" id="gEs-ca-DN0"/>
+                                    <constraint firstItem="TPD-HH-ibI" firstAttribute="height" secondItem="U8v-ZS-ys5" secondAttribute="height" multiplier="0.5" id="p2h-eJ-3ys"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCo-Kl-6Fk" userLabel="BottomView">
+                                <rect key="frame" x="0.0" y="683.33333333333337" width="393" height="85"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="naf-Qe-S9x">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="85"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hzy-rz-95w">
+                                                <rect key="frame" x="0.0" y="0.0" width="98.333333333333329" height="85"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" image="pencil" catalog="system" title="Edit"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nD0-Tb-oeL">
+                                                <rect key="frame" x="98.333333333333343" y="0.0" width="98.333333333333343" height="85"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" image="timer.circle" catalog="system" title="Timer"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E56-vk-XTQ">
+                                                <rect key="frame" x="196.66666666666666" y="0.0" width="97.999999999999972" height="85"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.down" catalog="system" title="Save"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yj-2v-0j2">
+                                                <rect key="frame" x="294.66666666666669" y="0.0" width="98.333333333333314" height="85"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" image="cart" catalog="system" title="Cart"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="naf-Qe-S9x" firstAttribute="top" secondItem="wCo-Kl-6Fk" secondAttribute="top" id="L0A-af-fC4"/>
+                                    <constraint firstAttribute="bottom" secondItem="naf-Qe-S9x" secondAttribute="bottom" id="jxu-Tr-y9U"/>
+                                    <constraint firstItem="naf-Qe-S9x" firstAttribute="leading" secondItem="wCo-Kl-6Fk" secondAttribute="leading" id="ssI-Gl-MwD"/>
+                                    <constraint firstAttribute="trailing" secondItem="naf-Qe-S9x" secondAttribute="trailing" id="wqb-Mq-YNC"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PNp-cf-dSv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="PNp-cf-dSv" firstAttribute="bottom" secondItem="7rI-3v-8VU" secondAttribute="bottom" id="N6L-uZ-Rkm"/>
-                            <constraint firstItem="PNp-cf-dSv" firstAttribute="trailing" secondItem="7rI-3v-8VU" secondAttribute="trailing" id="akv-FU-UTO"/>
-                            <constraint firstItem="7rI-3v-8VU" firstAttribute="top" secondItem="PNp-cf-dSv" secondAttribute="top" id="bf7-A5-1sd"/>
-                            <constraint firstItem="qkm-ht-EsX" firstAttribute="height" secondItem="PNp-cf-dSv" secondAttribute="height" multiplier="0.8" id="jch-j0-Ef1"/>
-                            <constraint firstItem="7rI-3v-8VU" firstAttribute="leading" secondItem="PNp-cf-dSv" secondAttribute="leading" id="rsY-iT-zb2"/>
+                            <constraint firstItem="U8v-ZS-ys5" firstAttribute="top" secondItem="GZg-gV-uFK" secondAttribute="bottom" id="0LV-V0-sS8"/>
+                            <constraint firstItem="U8v-ZS-ys5" firstAttribute="leading" secondItem="PNp-cf-dSv" secondAttribute="leading" id="9YI-pc-fG8"/>
+                            <constraint firstItem="U8v-ZS-ys5" firstAttribute="trailing" secondItem="PNp-cf-dSv" secondAttribute="trailing" id="IdE-7P-Wu2"/>
+                            <constraint firstItem="wCo-Kl-6Fk" firstAttribute="bottom" secondItem="PNp-cf-dSv" secondAttribute="bottom" id="Lo0-V4-4aA"/>
+                            <constraint firstItem="GZg-gV-uFK" firstAttribute="leading" secondItem="PNp-cf-dSv" secondAttribute="leading" id="QKZ-Zr-QhE"/>
+                            <constraint firstItem="wCo-Kl-6Fk" firstAttribute="top" secondItem="U8v-ZS-ys5" secondAttribute="bottom" id="Qvv-C0-LQo"/>
+                            <constraint firstItem="GZg-gV-uFK" firstAttribute="trailing" secondItem="PNp-cf-dSv" secondAttribute="trailing" id="Ubc-r8-7rX"/>
+                            <constraint firstItem="wCo-Kl-6Fk" firstAttribute="width" secondItem="tDm-fb-5mN" secondAttribute="width" id="X6L-8k-MEf"/>
+                            <constraint firstItem="GZg-gV-uFK" firstAttribute="width" secondItem="tDm-fb-5mN" secondAttribute="width" id="YQz-gs-35n"/>
+                            <constraint firstItem="U8v-ZS-ys5" firstAttribute="height" secondItem="tDm-fb-5mN" secondAttribute="height" multiplier="0.611502" id="aEW-YW-Q3O"/>
+                            <constraint firstItem="GZg-gV-uFK" firstAttribute="height" secondItem="tDm-fb-5mN" secondAttribute="height" multiplier="0.07" id="anX-vO-9EA"/>
+                            <constraint firstItem="wCo-Kl-6Fk" firstAttribute="height" secondItem="tDm-fb-5mN" secondAttribute="height" multiplier="0.1" id="d4C-sT-DeJ"/>
+                            <constraint firstItem="wCo-Kl-6Fk" firstAttribute="leading" secondItem="PNp-cf-dSv" secondAttribute="leading" id="m3k-Bt-efI"/>
+                            <constraint firstItem="wCo-Kl-6Fk" firstAttribute="trailing" secondItem="PNp-cf-dSv" secondAttribute="trailing" id="mDr-5e-UH9"/>
+                            <constraint firstItem="U8v-ZS-ys5" firstAttribute="width" secondItem="tDm-fb-5mN" secondAttribute="width" id="sWL-lN-MaU"/>
+                            <constraint firstItem="GZg-gV-uFK" firstAttribute="top" secondItem="PNp-cf-dSv" secondAttribute="top" id="saE-f4-i4P"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="topRated" id="ZNZ-6n-BKc"/>
                     <navigationItem key="navigationItem" id="Mlg-ux-zG1"/>
-                    <connections>
-                        <outlet property="recipeTextView" destination="1WV-Wo-uZT" id="1s9-Xw-fZj"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a3A-NW-2sV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -615,11 +701,15 @@
     <resources>
         <image name="brain.filled.head.profile" catalog="system" width="120" height="128"/>
         <image name="carrot" catalog="system" width="128" height="122"/>
+        <image name="cart" catalog="system" width="128" height="102"/>
         <image name="fitness.timer.fill" catalog="system" width="128" height="123"/>
         <image name="fork.knife.circle" catalog="system" width="128" height="123"/>
         <image name="globe.europe.africa.fill" catalog="system" width="128" height="123"/>
         <image name="minus" catalog="system" width="128" height="26"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="plus" catalog="system" width="32" height="32"/>
+        <image name="square.and.arrow.down" catalog="system" width="112" height="128"/>
+        <image name="timer.circle" catalog="system" width="128" height="123"/>
         <image name="trash" catalog="system" width="117" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -628,7 +718,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

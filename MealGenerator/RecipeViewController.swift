@@ -8,20 +8,25 @@
 import UIKit
 
 class RecipeViewController: UIViewController {
-
-    @IBOutlet var recipeTextView: UITextView!
+    // Text Views
+    @IBOutlet var titleTextView: UITextView!
+    @IBOutlet var ingredientsTextView: UITextView!
+    @IBOutlet var instructionsTextView: UITextView!
+    
+    
+    // Button Views
+    @IBOutlet var editButton: UIButton!
+    @IBOutlet var timerbutton: UIButton!
+    @IBOutlet var saveButton: UIButton!
+    @IBOutlet var cartButton: UIButton!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
 
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super .viewWillAppear(animated)
-        
-        recipeTextView.text = mealGenerator.getRecipe()
     }
     
     
