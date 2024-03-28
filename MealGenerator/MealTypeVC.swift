@@ -100,6 +100,9 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     @IBOutlet var lunchButton: UIButton!
     @IBOutlet var dinnerButton: UIButton!
     @IBOutlet var snackButton: UIButton!
+    @IBOutlet var dessertButton: UIButton!
+    @IBOutlet var saladButton: UIButton!
+    
     
     @IBOutlet var mealTimeButtons: [UIButton]!
     
@@ -138,7 +141,7 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         for button in mealTypeButtons {
             button.backgroundColor = UIColor.clear
         }
-        mealTimeButtons = [breakfastButton, lunchButton, dinnerButton, snackButton]
+        mealTimeButtons = [breakfastButton, lunchButton, dinnerButton, snackButton, dessertButton, saladButton]
         
         // Initiate first view
         if !check_if_button_is_active() {
@@ -644,6 +647,35 @@ extension MealTypeVC {
             snackButton.isSelected = true
         }
     }
+    
+    @IBAction func dessertButtonTapped(_ sender: UIButton) {
+        if dessertButton.isSelected {
+            mealGenerator.setDefaultMealTime()
+            unselect_mealTimeButtons()
+            dessertButton.isSelected = false
+        }
+        else {
+            unselect_mealTimeButtons()
+            mealGenerator.setMealTime(mealTime: "Dessert")
+            dessertButton.tintColor = lightBlue
+            dessertButton.isSelected = true
+        }
+    }
+    
+    @IBAction func saladButtonTapped(_ sender: UIButton) {
+        if saladButton.isSelected {
+            mealGenerator.setDefaultMealTime()
+            unselect_mealTimeButtons()
+            saladButton.isSelected = false
+        }
+        else {
+            unselect_mealTimeButtons()
+            mealGenerator.setMealTime(mealTime: "Salat")
+            saladButton.tintColor = lightBlue
+            saladButton.isSelected = true
+        }
+    }
+    
     
     private func unselect_mealTimeButtons() {
         for button in mealTimeButtons where button.isSelected {
