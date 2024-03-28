@@ -17,6 +17,53 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     var countryList = [
         "Afghanistan", "Albanien", "Algerien", "Andorra","Angola","Antigua und Barbuda","Argentinien","Armenien","Aserbaidschan","Australien","Bahamas","Bahrain","Bangladesch","Barbados","Belarus","Belgien","Belize","Benin","Bhutan","Bolivien","Bosnien und Herzegowina","Botswana","Brasilien","Brunei","Bulgarien","Burkina Faso","Burundi","Cabo Verde","Chile","China","Cookinseln","Costa Rica","Dänemark","Deutschland","Dominica","Dominikanische Republik","Dschibuti","Ecuador","El Salvador","Elfenbeinküste","Eritrea","Estland","Eswatini","Fidschi","Finnland","Frankreich","Gabun","Gambia","Georgien","Ghana","Grenada","Griechenland","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Indien","Indonesien","Irak","Iran","Irland","Island","Israel","Italien","Jamaika","Japan","Jemen","Jordanien","Kambodscha","Kamerun","Kanada","Kap Verde","Kasachstan","Katar","Kenia","Kirgisistan","Kiribati","Kolumbien","Komoren","Kongo, Demokratische Republik des","Kongo, Republik des","Korea, Nord","Korea, Süd","Kosovo","Kroatien","Kuba","Kuwait","Laos","Lesotho","Lettland","Libanon","Liberia","Libyen","Liechtenstein","Litauen","Luxemburg","Madagaskar","Malawi","Malaysia","Malediven","Mali","Malta","Marokko","Marshallinseln","Mauretanien","Mauritius","Mexiko","Mikronesien","Moldawien","Monaco","Mongolei","Montenegro","Mosambik","Myanmar","Namibia","Nauru","Nepal","Neuseeland","Nicaragua","Niederlande","Niger","Nigeria","Nordmazedonien","Norwegen","Oman","Österreich","Pakistan","Palau","Panama","Papua-Neuguinea","Paraguay","Peru","Philippinen","Polen","Portugal","Ruanda","Rumänien","Russland","Salomonen","Sambia","Samoa","San Marino","São Tomé und Príncipe","Saudi-Arabien","Schweden","Schweiz","Senegal","Serbien","Seychellen","Sierra Leone","Simbabwe","Singapur","Slowakei","Slowenien","Somalia","Spanien","Sri Lanka","St. Kitts und Nevis","St. Lucia","St. Vincent und die Grenadinen","Südafrika","Sudan","Südsudan","Suriname","Syrien","Tadschikistan","Taiwan","Tansania","Thailand","Timor-Leste","Togo","Tonga","Trinidad und Tobago","Tschad","Tschechien","Tunesien","Türkei","Turkmenistan","Tuvalu","Uganda","Ukraine","Ungarn","Uruguay","Usbekistan","Vanuatu","Vatikanstadt","Venezuela","Vereinigte Arabische Emirate","Vereinigtes Königreich","Vereinigte Staaten","Vietnam","Zentralafrikanische Republik","Zypern"
     ]
+    
+    // First time selection status
+    private var firstSelectedButtons = [
+        "MealType" : true,
+        "MealTime" : true,
+        "Country" : true,
+        "Custom" : true
+    ]
+    
+    private var constantSwitch = true
+    
+    private func resetButtonSelection() {
+        for (key, _) in self.firstSelectedButtons {
+            firstSelectedButtons[key] = true
+        }
+    }
+    
+    private let switchTime = 0.2
+    
+    
+    
+    // Selection Switcher
+    private func switchToSelection(for key: String!) {
+        var functionToCall: (() -> Void)?
+        var timeToSwitch = switchTime
+        switch key {
+        case "MealType":
+            functionToCall = self.selectMealTime
+        case "MealTime":
+            functionToCall = self.selectCountry
+        case "Country":
+            functionToCall = self.selectCustomPreset
+            timeToSwitch = 0.8
+        default:
+            functionToCall = {print("ERROR")}
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + timeToSwitch) {
+            if self.firstSelectedButtons[key]! {
+                if !self.constantSwitch {
+                    self.firstSelectedButtons[key] = false
+                }
+                if let function = functionToCall {
+                    function()
+                }
+            }
+        }
+    }
 
     
     // Country View
@@ -30,6 +77,8 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         self.globusMapView.removeAnnotations(allAnnotations)
         mealGenerator.setCountry(country: "")
     }
+    
+    private let initialCameraZoom:Double = 20000000
     
     // Custom Preset View
     var dataEntries: [dataEntry] = []
@@ -120,11 +169,13 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // reset button selection
+        resetButtonSelection()
         
         // Globus Zoom
         let camera = MKMapCamera()
         camera.centerCoordinate = CLLocationCoordinate2D(latitude: 50.110924, longitude: 8.682127)
-        camera.altitude = 30000000
+        camera.altitude = self.initialCameraZoom
         globusMapView.setCamera(camera, animated: true)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -150,6 +201,11 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         
         // Modify Pop Up Text View to be not interactable
         self.generateRecipeTextView.isEditable = false
+        
+        // initiate View with everything unselected
+        let allAnnotations = self.globusMapView.annotations
+        self.globusMapView.removeAnnotations(allAnnotations)
+        self.selectMealType()
         
         
         
@@ -249,6 +305,8 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                 annotation.coordinate = locationCoordinate
                 annotation.title = landName
                 strongSelf.globusMapView.addAnnotation(annotation)
+                // If it is the first time a country is selected jump to next page
+                strongSelf.switchToSelection(for: "Country")
             }
             
         }
@@ -270,6 +328,9 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         mealGenerator.setCountry(country: countryList[row])
         centerOnLand(name: countryList[row])
+        // If it is the first time a country is selected jump to next page
+        switchToSelection(for: "Country")
+        
         
     }
     
@@ -376,6 +437,10 @@ extension MealTypeVC {
 extension MealTypeVC {
     // This extension manages the buttons on the bottom bar of the Recipe generator
     @IBAction func mealTimeButtonTapped(_ sender: UIButton) {
+        selectMealTime()
+    }
+    
+    private func selectMealTime() {
         if self.mealTimeView.alpha != 1 {
             UIView.animate(withDuration: 0.5) {
                 self.unselect_buttonBarButtons()
@@ -389,6 +454,10 @@ extension MealTypeVC {
     
     
     @IBAction func mealTypeButtonTapped(_ sender: UIButton) {
+        selectMealType()
+    }
+    
+    private func selectMealType() {
         if self.mealTypeView.alpha != 1 {
             UIView.animate(withDuration: 0.5) {
                 self.unselect_buttonBarButtons()
@@ -401,6 +470,10 @@ extension MealTypeVC {
     }
     
     @IBAction func customPresetButtonTapped(_ sender: UIButton){
+        selectCustomPreset()
+    }
+    
+    private func selectCustomPreset() {
         if self.customPresetView.alpha != 1 {
             UIView.animate(withDuration: 0.5) {
                 self.unselect_buttonBarButtons()
@@ -413,6 +486,10 @@ extension MealTypeVC {
     }
     
     @IBAction func countryButtonTapped(_ sender: UIButton) {
+        selectCountry()
+    }
+    
+    private func selectCountry(){
         if self.countryView.alpha != 1 {
             UIView.animate(withDuration: 0.5) {
                 self.unselect_buttonBarButtons()
@@ -425,12 +502,20 @@ extension MealTypeVC {
     }
     
     @IBAction func generateRecipeButtonTapped(_ sender: UIButton) {
+        generateRecipe()
+    }
+    
+    private func generateRecipe() {
         var countryText = ""
         if mealGenerator.getCountry() != "" {
             countryText = " aus " + (mealGenerator.getCountry() ?? "")
         }
+        var article = "als"
+        if ["Frühstück", "Mittagessen", "Abendessen"].contains(mealGenerator.getMealTime()) {
+            article = "zum"
+        }
         
-        let showGenerationText = "Erstelle ein Rezept" + countryText + " für ein \(mealGenerator.getCategory() ?? "zufälliges Gericht") zum/als \(mealGenerator.getMealTime() ?? "zufällige Mahlzeit")? \n"
+        let showGenerationText = "Erstelle ein Rezept" + countryText + " für ein \(mealGenerator.getCategory() ?? "zufälliges Gericht") " + article + " \(mealGenerator.getMealTime() ?? "zufällige Mahlzeit")? \n"
         var additionalIngredients = ""
         var withoutIngredients = ""
         for entry in self.dataEntries {
@@ -489,6 +574,7 @@ extension MealTypeVC {
 
 // MEAL TYPE METHODS
 extension MealTypeVC {
+    
     // This extension manages the buttons on the Meal Type Chooser
     @IBAction func meatButtonTapped(_ sender: UIButton) {
         if meatButton.isSelected {
@@ -501,6 +587,7 @@ extension MealTypeVC {
             mealGenerator.setCategory(category: "Fleischgericht")
             meatButton.tintColor = lightBlue
             meatButton.isSelected = true
+            switchToSelection(for: "MealType")
         }
         
     }
@@ -516,6 +603,7 @@ extension MealTypeVC {
             mealGenerator.setCategory(category: "Fleischgericht")
             meatButton2.tintColor = lightBlue
             meatButton2.isSelected = true
+            switchToSelection(for: "MealType")
         }
         
     }
@@ -531,6 +619,7 @@ extension MealTypeVC {
             mealGenerator.setCategory(category: "Vegetarisches Gericht")
             vegetarianButton.tintColor = lightBlue
             vegetarianButton.isSelected = true
+            switchToSelection(for: "MealType")
         }
     }
     
@@ -545,6 +634,7 @@ extension MealTypeVC {
             mealGenerator.setCategory(category: "Veganes Gericht")
             veganButton.tintColor = lightBlue
             veganButton.isSelected = true
+            switchToSelection(for: "MealType")
         }
     }
     
@@ -559,6 +649,7 @@ extension MealTypeVC {
             mealGenerator.setCategory(category: "Zufälliges Gericht")
             randomType.tintColor = lightBlue
             randomType.isSelected = true
+            switchToSelection(for: "MealType")
         }
         
     }
@@ -574,6 +665,7 @@ extension MealTypeVC {
             mealGenerator.setCategory(category: "Zufälliges Gericht")
             randomType2.tintColor = lightBlue
             randomType2.isSelected = true
+            switchToSelection(for: "MealType")
         }
         
     }
@@ -603,6 +695,7 @@ extension MealTypeVC {
             mealGenerator.setMealTime(mealTime: "Frühstück")
             breakfastButton.tintColor = lightBlue
             breakfastButton.isSelected = true
+            switchToSelection(for: "MealTime")
         }
     }
     
@@ -617,6 +710,7 @@ extension MealTypeVC {
             mealGenerator.setMealTime(mealTime: "Mittagessen")
             lunchButton.tintColor = lightBlue
             lunchButton.isSelected = true
+            switchToSelection(for: "MealTime")
         }
     }
     
@@ -631,6 +725,7 @@ extension MealTypeVC {
             mealGenerator.setMealTime(mealTime: "Abendessen")
             dinnerButton.tintColor = lightBlue
             dinnerButton.isSelected = true
+            switchToSelection(for: "MealTime")
         }
     }
     
@@ -645,6 +740,7 @@ extension MealTypeVC {
             mealGenerator.setMealTime(mealTime: "Snack")
             snackButton.tintColor = lightBlue
             snackButton.isSelected = true
+            switchToSelection(for: "MealTime")
         }
     }
     
@@ -659,6 +755,7 @@ extension MealTypeVC {
             mealGenerator.setMealTime(mealTime: "Dessert")
             dessertButton.tintColor = lightBlue
             dessertButton.isSelected = true
+            switchToSelection(for: "MealTime")
         }
     }
     
@@ -673,6 +770,7 @@ extension MealTypeVC {
             mealGenerator.setMealTime(mealTime: "Salat")
             saladButton.tintColor = lightBlue
             saladButton.isSelected = true
+            switchToSelection(for: "MealTime")
         }
     }
     
