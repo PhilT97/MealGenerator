@@ -22,14 +22,16 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     private var firstSelectedButtons = [
         "MealType" : true,
         "MealTime" : true,
-        "Country" : true,
+        "Country" : false,
         "Custom" : true
     ]
     
+    // Automatic Register switch after (first) selection
     private var constantSwitch = true
     
+    
     private func resetButtonSelection() {
-        for (key, _) in self.firstSelectedButtons {
+        for (key, _) in self.firstSelectedButtons where key != "Country"{
             firstSelectedButtons[key] = true
         }
     }
@@ -66,11 +68,15 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
 
     
-    // Country View
+    // Country View and Buttons
     
     @IBOutlet var globusMapView: MKMapView!
     @IBOutlet var countryPickerView: UIPickerView!
     @IBOutlet var countryTrashButton: UIButton!
+    @IBOutlet var countryTextField: UITextField!
+    
+    @IBOutlet var CountryPickerContainerView: UIView!
+    private var CountryPickerContainerViewY: CGFloat!
     
     @IBAction func countryTrashButtonTapped (_ sender: UIButton){
         let allAnnotations = self.globusMapView.annotations
@@ -169,6 +175,8 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.customPresetInputViewY = customPresetInputView.frame.origin.y
+        self.CountryPickerContainerViewY = CountryPickerContainerView.frame.origin.y
         // reset button selection
         resetButtonSelection()
         
@@ -178,11 +186,15 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         camera.altitude = self.initialCameraZoom
         globusMapView.setCamera(camera, animated: true)
         
+        
+        
+        // keyboard appear Disapper for Custom Preset Register
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+        // Confirmation Window
         generateRecipeView.layer.cornerRadius = 20
         // Initiate View Array
         categoryViews = [mealTypeView, mealTimeView, customPresetView, countryView]
@@ -215,15 +227,15 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
 
         
     }
     
     override func viewDidLoad() {
         // initialize buttons in array
-        self.customPresetInputViewY = customPresetInputView.frame.origin.y
+        
         
         
         
@@ -239,6 +251,8 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         // country Funcitonality
         countryPickerView.delegate = self
         countryPickerView.dataSource = self
+        
+        countryTextField.delegate = self
         
         // keyboard functionality
 //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -329,10 +343,24 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         mealGenerator.setCountry(country: countryList[row])
         centerOnLand(name: countryList[row])
         // If it is the first time a country is selected jump to next page
-        switchToSelection(for: "Country")
+//        switchToSelection(for: "Country")
         
         
     }
+    
+    // Country Text Field Functionality
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        countryTextField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+            if let text = textField.text,
+               let row = countryList.firstIndex(of: text) {
+                countryPickerView.selectRow(row, inComponent: 0, animated: true)
+            }
+        }
     
     func centerOnLand(name: String){
         let geocoder = CLGeocoder()
@@ -346,7 +374,12 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             annotation.title = name
             strongSelf.globusMapView.addAnnotation(annotation)
             let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 6000000, longitudinalMeters: 6000000)
+            let animationDuration = 1.0
             strongSelf.globusMapView.setRegion(region, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
+                strongSelf.switchToSelection(for: "Country")
+            }
+            
             
         }
     }
@@ -356,10 +389,10 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         view.endEditing(true)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        return true
+//    }
     
     @objc func keyboardWillShow(notification: NSNotification) {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {return}
@@ -367,6 +400,8 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         
         UIView.animate(withDuration: 0.3){
             self.customPresetInputView.frame.origin.y = newViewPosition - self.customPresetInputView.frame.height
+            print("TEST")
+            self.CountryPickerContainerView.frame.origin.y = newViewPosition + 25 - self.CountryPickerContainerView.frame.height
             self.view.layoutIfNeeded()
         }
         
@@ -375,6 +410,7 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     @objc func keyboardWillHide(notification: NSNotification) {
         UIView.animate(withDuration: 0.3) {
             self.customPresetInputView.frame.origin.y = self.customPresetInputViewY
+            self.CountryPickerContainerView.frame.origin.y = self.CountryPickerContainerViewY
             self.view.layoutIfNeeded()
             
         }
