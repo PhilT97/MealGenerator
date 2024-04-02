@@ -139,7 +139,7 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     @IBOutlet var randomType: UIButton!
     @IBOutlet var randomType2: UIButton!
     
-    @IBOutlet var mealTypeButtons: [UIButton]!
+    @IBOutlet var mealTypeButtons: [UIButton] = []
     
     // Meal Type Scroll View
     @IBOutlet var mealTypeScrollView: UIScrollView!
@@ -159,7 +159,7 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     @IBOutlet var saladButton: UIButton!
     
     
-    @IBOutlet var mealTimeButtons: [UIButton]!
+    @IBOutlet var mealTimeButtons: [UIButton] = []
     
     // Activity Indicator
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
@@ -175,6 +175,10 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        mealGenerator.restore_to_default()
+        restore_vc_to_default()
+        
+        
         self.customPresetInputViewY = customPresetInputView.frame.origin.y
         self.CountryPickerContainerViewY = CountryPickerContainerView.frame.origin.y
         // reset button selection
@@ -287,6 +291,18 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             scrollView.contentOffset = endOffset
         }
     }
+    // Restore View controller data to default
+    private func restore_vc_to_default() {
+        self.dataEntries.removeAll()
+        self.customPresetTableView.reloadData()
+        if !(mealTypeButtons.isEmpty || mealTimeButtons.isEmpty) {
+            for button in (mealTimeButtons + mealTypeButtons){
+                button.isSelected = false
+                button.tintColor = UIColor.systemBlue
+            }
+        }
+    }
+    
     
     // Country Methods
     @objc func mapTapped(_ sender: UITapGestureRecognizer) {
@@ -400,7 +416,6 @@ class MealTypeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         
         UIView.animate(withDuration: 0.3){
             self.customPresetInputView.frame.origin.y = newViewPosition - self.customPresetInputView.frame.height
-            print("TEST")
             self.CountryPickerContainerView.frame.origin.y = newViewPosition + 25 - self.CountryPickerContainerView.frame.height
             self.view.layoutIfNeeded()
         }

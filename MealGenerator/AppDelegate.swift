@@ -9,20 +9,31 @@ import MealGeneratorKit
 import OpenAIKit
 import UIKit
 
-//"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"
+let keyName = "key"
 
-let apiToken: String = "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"
+private func parse_key(fileName: String!) -> String! {
+    guard let filePath = Bundle.main.path(forResource: fileName, ofType: "txt") else {
+        print("\(fileName ?? "") not Found.")
+        return nil
+    }
+        do {
+            print(filePath)
+            let key = try String(contentsOfFile: filePath, encoding: .utf8)
+            print(key)
+            return key
+        } catch {
+            print("Error reading file")
+            return nil
+        }
+}
 
-
-
-/// Initialize OpenAIKit with your API Token wherever convenient in your project. Organization name is optional.
-public let openAI = OpenAIKit(apiToken: apiToken)
+var apiToken = parse_key(fileName: keyName)
+public let openAI = OpenAIKit(apiToken: apiToken!)
 public let mealGenerator = RecipePrompt()
 
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -42,6 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    
+    
 
 
 }

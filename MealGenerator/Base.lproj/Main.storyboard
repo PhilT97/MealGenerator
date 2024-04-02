@@ -813,6 +813,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <segue destination="jXv-hj-PKa" kind="relationship" relationship="viewControllers" id="dhr-it-G29"/>
                         <segue destination="sG8-XH-3WV" kind="relationship" relationship="viewControllers" id="3bD-Mp-cBE"/>
                     </connections>
                 </tabBarController>
@@ -820,11 +821,27 @@
             </objects>
             <point key="canvasLocation" x="1667.9389312977098" y="-2.1126760563380285"/>
         </scene>
+        <!--Main Screen-->
+        <scene sceneID="ITm-nq-OHT">
+            <objects>
+                <viewController id="jXv-hj-PKa" userLabel="Main Screen" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d6T-Xh-Smc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="c7b-rU-gGG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" image="house" catalog="system" id="Ggl-Dn-H0I"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IrP-KZ-z4f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3137" y="-2"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="gvF-J5-Qkr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sG8-XH-3WV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="JBi-wz-z29"/>
+                    <tabBarItem key="tabBarItem" image="brain" catalog="system" id="JBi-wz-z29"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4HC-X5-xkd">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -841,12 +858,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="brain" catalog="system" width="128" height="107"/>
         <image name="brain.filled.head.profile" catalog="system" width="120" height="128"/>
         <image name="carrot" catalog="system" width="128" height="122"/>
         <image name="cart" catalog="system" width="128" height="102"/>
         <image name="fitness.timer.fill" catalog="system" width="128" height="123"/>
         <image name="fork.knife.circle" catalog="system" width="128" height="123"/>
         <image name="globe.europe.africa.fill" catalog="system" width="128" height="123"/>
+        <image name="house" catalog="system" width="128" height="104"/>
         <image name="minus" catalog="system" width="128" height="26"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="plus" catalog="system" width="128" height="113"/>
