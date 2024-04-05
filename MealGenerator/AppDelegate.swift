@@ -17,9 +17,7 @@ private func parse_key(fileName: String!) -> String! {
         return nil
     }
         do {
-            print(filePath)
             let key = try String(contentsOfFile: filePath, encoding: .utf8)
-            print(key)
             return key
         } catch {
             print("Error reading file")
